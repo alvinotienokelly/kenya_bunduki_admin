@@ -1,0 +1,3 @@
+# security.txt: this is for the seecurity team to report any vulanarabilities
+Contact: mailto:security@example.com
+Acknowledgements: https://example.com/security-acknowledgements
