@@ -82,11 +82,19 @@ const SignIn = () => {
           </div>
         </form>
         {error && <p className="text-red-500 text-start mt-0.5">{error}</p>}
-        <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-100">
-          <Link to="/accounts/forgot-password" className="text-primary dark:text-gray-100 hover:underline font-medium">
-            Forgot Password
-          </Link>
-        </p>
+        <div className="flex items-center w-full justify-between">
+          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-100">
+            <Link to="/accounts/forgot-password" className="text-primary dark:text-gray-100 hover:underline font-medium">
+              Forgot Password
+            </Link>
+          </p>
+          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-100">
+            Don't have an account?{' '}
+            <Link to="/accounts/register" className="ml-2 underline text-primary dark:text-gray-100 hover:underline font-medium">
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

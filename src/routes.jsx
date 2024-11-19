@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import SignIn from './pages/auth/SignIn'
 import PageTitle from './components/PageTitle'
+import SignUp from './pages/auth/SignUp'
 
 const AppRoutes = () => {
     return (
@@ -15,6 +16,15 @@ const AppRoutes = () => {
                     <>
                         <PageTitle title="Sign In" />
                         <SignIn />
+                    </>
+                }
+            />
+            <Route
+                path="/accounts/register"
+                element={
+                    <>
+                        <PageTitle title="Sign Up" />
+                        <SignUp />
                     </>
                 }
             />
