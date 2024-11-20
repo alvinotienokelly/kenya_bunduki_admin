@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FaRegFileAlt, FaRegHandshake, FaFileInvoice, FaUsers, FaDatabase, FaTasks, FaFlag } from 'react-icons/fa';
+import { FaRegFileAlt, FaRegHandshake, FaFileInvoice, FaUsers, FaDatabase, FaTasks } from 'react-icons/fa';
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';

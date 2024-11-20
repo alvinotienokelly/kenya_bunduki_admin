@@ -8,7 +8,6 @@ const NotificationsModal = () => {
     const getNotifications = async () => {
         try {
             const response = await fetchNotifications();
-            console.log(response);
             setNotifications(response.notifications);
         } catch (error) {
             toast.error("");

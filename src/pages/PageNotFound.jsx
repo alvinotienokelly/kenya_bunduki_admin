@@ -20,7 +20,7 @@ const PageNotFound = () => {
             </header>
 
             <main className="flex-grow flex items-center justify-center">
-                <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-10 max-w-xl text-center">
+                <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-10 w-[90%] md:w-[45%] text-center">
                     <h1 className="text-8xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-5">
                         404
                     </h1>
