@@ -48,3 +48,13 @@ export const resetPassword = async (passwordData) => {
     throw error;
   }
 };
+
+// notifications services
+export const fetchNotifications = async () => {
+  try {
+    const response = await api.get('/notifications');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

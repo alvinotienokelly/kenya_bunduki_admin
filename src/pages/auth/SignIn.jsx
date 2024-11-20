@@ -22,7 +22,7 @@ const SignIn = () => {
         navigate('/accounts/otp-verification', {
           state: { email: email, type: 'login', otp },
         });
-        toast.success(response.message);
+        toast.success("OTP sent to your email");
       } else {
         toast.error(response.message);
       }
@@ -36,7 +36,7 @@ const SignIn = () => {
   return (
     <div className="flex gap-6 flex-col-reverse md:flex-row items-center bg-white justify-center h-screen bg-cover bg-center signin-background dark:bg-gray-900 p-8 dark:text-white">
       <img src={img} alt="" />
-      <div className="w-[90%]">
+      <div className="w-[90%] dark:border border-gray-600 rounded-md dark:p-4">
         <p className="my-4 font-semibold text-[18px] text-black text-center dark:text-gray-300">
           Login to your account
         </p>
@@ -50,7 +50,7 @@ const SignIn = () => {
               placeholder="johndoe@gmail.com"
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"
             />
           </div>
           <div>
@@ -62,7 +62,7 @@ const SignIn = () => {
               placeholder="********"
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-gray-800 dark:border-gray-600 dark:text-white"
             />
           </div>
           <div className="relative group w-full">

@@ -122,7 +122,6 @@ const OtpVerification = () => {
         <p className="text-gray-700 text-center mb-3 dark:text-gray-300">
           OTP sent to <strong className="dark:text-gray-100">{hashedEmail}</strong>
         </p>
-
         <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }} className="flex flex-col items-center space-y-4">
           <div className="flex space-x-2">
             {code.map((digit, idx) => (
@@ -135,6 +134,9 @@ const OtpVerification = () => {
                 className="w-10 h-10 border text-center rounded-md focus:outline-none focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 onChange={(e) => handleOtpChange(e, idx)}
                 onKeyDown={(e) => handleKeyDown(e, idx)}
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                }}
               />
             ))}
           </div>

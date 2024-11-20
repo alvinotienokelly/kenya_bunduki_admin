@@ -4,6 +4,8 @@ import SignIn from './pages/auth/SignIn'
 import PageTitle from './components/PageTitle'
 import SignUp from './pages/auth/SignUp'
 import ForgotPassword from './pages/auth/ForgotPassword'
+import OtpVerification from './pages/auth/OtpVerification'
+import Layout from './elements/Layout'
 
 const AppRoutes = () => {
     return (
@@ -30,11 +32,31 @@ const AppRoutes = () => {
                 }
             />
             <Route
+                path="/accounts/otp-verification"
+                element={
+                    <>
+                        <PageTitle title="Verify OTP" />
+                        <OtpVerification />
+                    </>
+                }
+            />
+            <Route
                 path="/accounts/forgot-password"
                 element={
                     <>
                         <PageTitle title="Forgot password" />
                         <ForgotPassword />
+                    </>
+                }
+            />
+
+            {/* Dashboard routes */}
+            <Route
+                path="/dashboard"
+                element={
+                    <>
+                        <PageTitle title="Dashboard" />
+                        <Layout />
                     </>
                 }
             />
