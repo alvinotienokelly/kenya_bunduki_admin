@@ -7,6 +7,8 @@ import ForgotPassword from './pages/auth/ForgotPassword'
 import OtpVerification from './pages/auth/OtpVerification'
 import Layout from './elements/Layout'
 import PageNotFound from './pages/PageNotFound'
+import Deals from './pages/deals/Deals'
+import MyDeals from './pages/deals/MyDeals'
 
 const AppRoutes = () => {
     return (
@@ -69,6 +71,26 @@ const AppRoutes = () => {
                     <>
                         <PageTitle title="Page Not Found" />
                         <PageNotFound />
+                    </>
+                }
+            />
+
+            {/* Deals routes */}
+            <Route
+                path="/dashboard/deals"
+                element={
+                    <>
+                        <PageTitle title="All deals" />
+                        <Deals />
+                    </>
+                }
+            />
+            <Route
+                path="/dashboard/my-deals"
+                element={
+                    <>
+                        <PageTitle title="My deals" />
+                        <MyDeals />
                     </>
                 }
             />

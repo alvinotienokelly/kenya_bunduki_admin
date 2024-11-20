@@ -35,8 +35,8 @@ const SignIn = () => {
 
   return (
     <div className="flex gap-6 flex-col-reverse md:flex-row items-center bg-white justify-center h-screen bg-cover bg-center signin-background dark:bg-gray-900 p-8 dark:text-white">
-      <img src={img} alt="" />
-      <div className="w-[90%] dark:border border-gray-600 rounded-md dark:p-4">
+      <img className='' src={img} alt="" />
+      <div className="w-[90%] md:w-[50%] dark:border border-gray-600 rounded-md dark:p-4">
         <p className="my-4 font-semibold text-[18px] text-black text-center dark:text-gray-300">
           Login to your account
         </p>
