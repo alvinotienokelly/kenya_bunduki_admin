@@ -6,6 +6,7 @@ import SignUp from './pages/auth/SignUp'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import OtpVerification from './pages/auth/OtpVerification'
 import Layout from './elements/Layout'
+import PageNotFound from './pages/PageNotFound'
 
 const AppRoutes = () => {
     return (
@@ -57,6 +58,17 @@ const AppRoutes = () => {
                     <>
                         <PageTitle title="Dashboard" />
                         <Layout />
+                    </>
+                }
+            />
+
+            {/* Page not found */}
+            <Route
+                path="*"
+                element={
+                    <>
+                        <PageTitle title="Page Not Found" />
+                        <PageNotFound />
                     </>
                 }
             />
