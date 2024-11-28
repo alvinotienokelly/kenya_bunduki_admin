@@ -49,6 +49,15 @@ export const resetPassword = async (passwordData) => {
   }
 };
 
+export const getUsersByType = async (userType) => {
+  try {
+    const response = await api.get(`/users/users-by-type/${userType}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // notifications services
 export const fetchNotifications = async () => {
   try {

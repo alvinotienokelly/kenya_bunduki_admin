@@ -3,11 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { FaAngleDown, FaArrowLeft, FaBars } from 'react-icons/fa';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { useAuth } from '../context/AuthContext';
-import NotificationsModal from '../components/NotificationsModal';
-import ProfileModal from '../components/ProfileModal';
-import BottomNav from '../components/BottomNav';
-import MobileSidebar from '../components/MobileSidebar';
 import SideMenu from '../components/SideMenu';
+import BottomNav from '../components/BottomNav';
+import ProfileModal from '../components/ProfileModal';
+import NotificationsModal from '../components/NotificationsModal';
+import MobileSidebar from '../components/MobileSidebar';
 
 const Layout = ({ children, title, rightContent }) => {
   const { user } = useAuth();

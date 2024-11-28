@@ -9,6 +9,7 @@ import Layout from './elements/Layout'
 import PageNotFound from './pages/PageNotFound'
 import Deals from './pages/deals/Deals'
 import MyDeals from './pages/deals/MyDeals'
+import TargetCompanies from './pages/TargetCompanies'
 
 const AppRoutes = () => {
     return (
@@ -91,6 +92,17 @@ const AppRoutes = () => {
                     <>
                         <PageTitle title="My deals" />
                         <MyDeals />
+                    </>
+                }
+            />
+
+            {/* target companies routes */}
+            <Route
+                path="/dashboard/target-companies"
+                element={
+                    <>
+                        <PageTitle title="Target Companies" />
+                        <TargetCompanies />
                     </>
                 }
             />
