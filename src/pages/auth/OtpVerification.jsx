@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { sendOtp, verifyOtp } from '../../services/api_service';
 import toast from 'react-hot-toast';
+import CryptoJS from 'crypto-js';
 import { useAuth } from '../../context/AuthContext';
 
 const OtpVerification = () => {
@@ -14,6 +15,12 @@ const OtpVerification = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const inputRefs = useRef([]);
+
+  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY || 'default-secret-key';
+
+  const encryptData = (data) => {
+    return CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();
+  };
 
   useEffect(() => {
     const { otp } = location.state || {};
@@ -80,8 +87,11 @@ const OtpVerification = () => {
 
         if (type === 'login') {
           if (response.token) {
-            Cookies.set('user', JSON.stringify(response.user), { expires: 2 });
-            Cookies.set('token', response.token, { expires: 2 });
+            const encryptedUser = encryptData(response.user);
+            const encryptedToken = encryptData(response.token);
+
+            Cookies.set('user', encryptedUser, { expires: 2, secure: true, sameSite: 'Strict' });
+            Cookies.set('token', encryptedToken, { expires: 2, secure: true, sameSite: 'Strict' });
             login(response.user, response.token);
           } else {
             toast.error('Token is missing');
