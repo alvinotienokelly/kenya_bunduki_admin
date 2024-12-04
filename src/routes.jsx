@@ -10,6 +10,7 @@ import PageNotFound from './pages/PageNotFound'
 import Deals from './pages/deals/Deals'
 import MyDeals from './pages/deals/MyDeals'
 import TargetCompanies from './pages/TargetCompanies'
+import Settings from './pages/settings/Settings'
 
 const AppRoutes = () => {
     return (
@@ -103,6 +104,18 @@ const AppRoutes = () => {
                     <>
                         <PageTitle title="Target Companies" />
                         <TargetCompanies />
+                    </>
+                }
+            />
+
+
+            {/* settings routes */}
+            <Route
+                path="/dashboard/settings"
+                element={
+                    <>
+                        <PageTitle title="Settings" />
+                        <Settings />
                     </>
                 }
             />
