@@ -16,7 +16,7 @@ const OtpVerification = () => {
   const { login } = useAuth();
   const inputRefs = useRef([]);
 
-  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY || 'default-secret-key';
+  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY || '';
 
   const encryptData = (data) => {
     return CryptoJS.AES.encrypt(JSON.stringify(data), SECRET_KEY).toString();

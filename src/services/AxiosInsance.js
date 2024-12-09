@@ -22,11 +22,11 @@ const api = axios.create({
   },
 });
 
-// Axios instance for making authenticated requests
 api.interceptors.request.use(
   (config) => {
     const encryptedToken = Cookies.get('token');
     if (encryptedToken) {
+      
       const token = decryptData(encryptedToken);
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
@@ -39,7 +39,6 @@ api.interceptors.request.use(
   }
 );
 
-// Axios instance for handling 401 errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {

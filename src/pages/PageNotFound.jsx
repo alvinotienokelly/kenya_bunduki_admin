@@ -21,7 +21,7 @@ const PageNotFound = () => {
 
             <main className="flex-grow flex items-center justify-center">
                 <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-10 w-[90%] md:w-[45%] text-center">
-                    <h1 className="text-8xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-5">
+                    <h1 className="text-8xl font-extrabold text-primary dark:text-indigo-400 mb-5">
                         404
                     </h1>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-gray-300 mb-4">
@@ -33,7 +33,7 @@ const PageNotFound = () => {
                     </p>
                     <button
                         onClick={handleGoHome}
-                        className="px-8 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition duration-300 font-semibold text-[15px] shadow-lg"
+                        className="px-8 py-1.5 bg-primary text-white rounded-lg hover:bg-indigo-700 dark:bg-primary dark:hover:bg-indigo-600 transition duration-300  text-[15px] shadow-lg"
                     >
                         Back to Homepage
                     </button>
@@ -50,14 +50,14 @@ const PageNotFound = () => {
                     <div className="flex space-x-4">
                         <a
                             href="/company/privacy-policy"
-                            className="hover:underline text-indigo-500 dark:text-indigo-400 font-medium"
+                            className="hover:underline text-primary dark:text-indigo-400 font-medium"
                         >
                             Privacy Policy
                         </a>
                         <span>|</span>
                         <a
                             href="/company/terms-of-service"
-                            className="hover:underline text-indigo-500 dark:text-indigo-400 font-medium"
+                            className="hover:underline text-primary dark:text-indigo-400 font-medium"
                         >
                             Terms of Service
                         </a>
