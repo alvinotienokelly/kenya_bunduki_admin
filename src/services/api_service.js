@@ -114,11 +114,68 @@ export const withdrawInterest = async (dealId) => {
   }
 }
 
-
 // transaction services
 export const fetchTransactions = async () => {
   try {
     const response = await api.get('/transactions');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const getTasks = async () => {
+  try {
+    const response = await api.get("/tasks");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching tasks:", error);
+    throw error;
+  }
+}
+
+export const getDealMilestones = async (id) => {
+  try {
+    const response = await api.get(`/milestones/deal/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching deal tasks:", error);
+    throw error;
+  }
+}
+
+export const getMilestones = async (params = {}) => {
+  try {
+    const queryString = new URLSearchParams(params).toString();
+    const response = await api.get(`/milestones/filter/milestones?${queryString}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching milestones:", error);
+    throw error;
+  }
+};
+
+export const addDealMilestone = async (milestoneData) => {
+  try {
+    const response = await api.post("/milestones", milestoneData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const deleteDealMilestone = async (id) => {
+  try {
+    const response = await api.delete(`/milestones/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const updateDealMilestone = async (id, data) => {
+  try {
+    const response = await api.put(`/milestones/${id}`, data);
     return response.data;
   } catch (error) {
     throw error;

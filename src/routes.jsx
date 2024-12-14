@@ -11,6 +11,8 @@ import Deals from './pages/deals/Deals'
 import MyDeals from './pages/deals/MyDeals'
 import TargetCompanies from './pages/TargetCompanies'
 import Settings from './pages/settings/Settings'
+import TaskList from './pages/tasks/TaskList'
+import Milestones from './pages/milestones/Milestones'
 
 const AppRoutes = () => {
     return (
@@ -108,6 +110,25 @@ const AppRoutes = () => {
                 }
             />
 
+            <Route
+                path="/dashboard/tasks"
+                element={
+                    <>
+                        <PageTitle title="Tasks" />
+                        <TaskList />
+                    </>
+                }
+            />
+
+            <Route
+                path="/dashboard/milestones"
+                element={
+                    <>
+                        <PageTitle title="Milestones" />
+                        <Milestones />
+                    </>
+                }
+            />
 
             {/* settings routes */}
             <Route

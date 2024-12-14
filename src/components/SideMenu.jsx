@@ -44,17 +44,14 @@ const SideMenu = () => {
           <Link to="/dashboard/my-deals" className={getLinkClasses(['/dashboard/my-deals'])}>
             <FaRegFileAlt size={24} className="mr-2" /> My Deals
           </Link>
-          <Link to="/dashboard/transactions" className={getLinkClasses(['/dashboard/transactions'])}>
+          {/* <Link to="/dashboard/transactions" className={getLinkClasses(['/dashboard/transactions'])}>
             <FaFileInvoice size={24} className="mr-2" /> Transactions
-          </Link>
+          </Link> */}
           <Link to="/dashboard/tasks" className={getLinkClasses(['/dashboard/tasks'])}>
             <FaTasks size={24} className="mr-2" /> Tasks
           </Link>
           <Link to="/dashboard/milestones" className={getLinkClasses(['/dashboard/milestones'])}>
             <FaFlag size={24} className="mr-2" /> Milestones
-          </Link>
-          <Link to="/dashboard/investors" className={getLinkClasses(['/dashboard/investors'])}>
-            <FaUsers size={24} className="mr-2" /> Investors
           </Link>
           <Link
             to="/dashboard/target-companies"
