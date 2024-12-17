@@ -190,3 +190,31 @@ export const updateDealMilestone = async (id, data) => {
     throw error;
   }
 }
+
+export const getmeetingByDealId = async (id) => {
+  try {
+    const response = await api.get(`/noble-teams/deal/${id}/meetings`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const getDealTasks = async (id) => {
+  try {
+    const response = await api.get(`/tasks/deal/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching deal tasks:", error);
+    throw error;
+  }
+};
+
+export const fetchDeal = async (id) => {
+  try {
+    const response = await api.get(`/deals/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

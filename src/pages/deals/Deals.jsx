@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../elements/Layout'
 import { fetchDeals } from '../../services/api_service';
 import Modal from '../../elements/Modal';
+import { FaAngleLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Deals = () => {
   const [deals, setDeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState('loading');
+  const navigate = useNavigate();
 
   const getDeals = async () => {
     try {
@@ -72,7 +75,7 @@ const Deals = () => {
                   className='bg-primary text-[13px] text-white px-2 py-1 w-1/2 rounded'>
                   Interested
                 </button>
-                <button className='border border-primary text-primary font-medium w-1/2 text-[13px] px-2 py-1 rounded'>
+                <button onClick={() => navigate(`/dashboard/deals/${deal.deal_id}`)} className='border border-primary text-primary font-medium w-1/2 text-[13px] px-2 py-1 rounded'>
                   View
                 </button>
               </div>
@@ -109,6 +112,12 @@ const Deals = () => {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Our team will get back to you within two business days.
               </p>
+              <button
+                onClick={closeModal}
+                className="bg-primary px-6 py-1 rounded-md text-white font-medium text-[14px] mt-2 flex items-center justify-center gap-2">
+                <FaAngleLeft />
+                Go back
+              </button>
             </div>
           )}
         </Modal>

@@ -96,14 +96,13 @@ const Layout = ({ children, title, rightContent }) => {
             {showUserDropdown && <ProfileModal user={user} />}
           </div>
         </div>
-        <div className="hidden md:flex items-center gap-2 mt-2">
+        <div className="hidden md:flex items-center gap-2 my-2">
           <p className="dark:text-gray-400">Home</p>
           <p className="dark:text-gray-400">/</p>
           <p className="text-black dark:text-white text-[16px] font-medium">{title}</p>
         </div>
         <div className="mt-2 md:mt-0 flex items-center justify-end md:justify-between w-full">
-          <p className="text-primary dark:text-gray-100 hidden md:block font-semibold text-[22px] mt-2">
-            {title}
+          <p className="text-primary dark:text-gray-100 hidden md:block font-semibold text-[22px]">
           </p>
           <div className="hidden md:block">{rightContent}</div>
         </div>

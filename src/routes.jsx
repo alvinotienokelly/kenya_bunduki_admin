@@ -13,6 +13,7 @@ import TargetCompanies from './pages/TargetCompanies'
 import Settings from './pages/settings/Settings'
 import TaskList from './pages/tasks/TaskList'
 import Milestones from './pages/milestones/Milestones'
+import ViewDeal from './pages/deals/ViewDeal'
 
 const AppRoutes = () => {
     return (
@@ -89,6 +90,18 @@ const AppRoutes = () => {
                     </>
                 }
             />
+
+            <Route
+                path="/dashboard/deals/:id"
+                element={
+                    <>
+                        <PageTitle title="View deal" />
+                        <ViewDeal />
+                    </>
+                }
+            />
+
+
             <Route
                 path="/dashboard/my-deals"
                 element={
