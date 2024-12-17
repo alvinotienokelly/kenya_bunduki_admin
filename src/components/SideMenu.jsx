@@ -3,8 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import {
   FaRegFileAlt,
   FaRegHandshake,
-  FaFileInvoice,
-  FaUsers,
   FaClipboardList,
   FaDatabase,
   FaTasks,

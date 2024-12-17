@@ -87,6 +87,15 @@ export const fetchMyDeals = async () => {
   }
 }
 
+export const getDealsByUserPreference = async () => {
+  try {
+    const response = await api.get('/deals/user/preferences');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const expressInterest = async (dealId) => {
   try {
     const response = await api.post(`/deals/${dealId}/express-interest`);
