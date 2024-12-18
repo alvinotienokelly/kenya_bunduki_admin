@@ -96,7 +96,7 @@ const OtpVerification = () => {
           } else {
             toast.error('Token is missing');
           }
-          navigate('/dashboard');
+          navigate('/dashboard/deals');
         } else if (type === 'forgot-password') {
           navigate('/accounts/reset-password', { state: { email, token: otpCode || code.join('') } });
         }
