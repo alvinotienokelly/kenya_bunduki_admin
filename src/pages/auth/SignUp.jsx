@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { registerUser } from '../../services/api_service';
-import img from '../../assets/img.png';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { registerUser } from "../../services/api_service";
+import img from "../../assets/img.png";
 
 const SignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { name, email, password, phone };
-    
+    const userData = {
+      name,
+      email,
+      password,
+      phone,
+      role_id: "dbb96d4c-7678-4644-a070-f6b1b7304075",
+    };
+
     setLoading(true);
     try {
       const response = await registerUser(userData);
       if (response.status) {
         toast.success("Registration successful!");
-        navigate('/accounts/login');
+        navigate("/accounts/login");
       } else {
-        toast.error(response.message || "Registration failed. Please try again.");
-        setError(response.message || 'Registration failed. Please try again.');
+        toast.error(
+          response.message || "Registration failed. Please try again."
+        );
+        setError(response.message || "Registration failed. Please try again.");
       }
     } catch (err) {
       toast.error("An error occurred during registration. Please try again.");
@@ -44,7 +52,12 @@ const SignUp = () => {
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-gray-700 dark:text-gray-300">Name</label>
+            <label
+              htmlFor="name"
+              className="block text-gray-700 dark:text-gray-300"
+            >
+              Name
+            </label>
             <input
               type="text"
               id="name"
@@ -56,7 +69,12 @@ const SignUp = () => {
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-gray-700 dark:text-gray-300">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-gray-700 dark:text-gray-300"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -67,26 +85,14 @@ const SignUp = () => {
               className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-transparent dark:border-gray-600 dark:text-white"
             />
           </div>
-          <div className="relative">
-            <label htmlFor="password" className="block text-gray-700 dark:text-gray-300">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              value={password}
-              placeholder="********"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-transparent dark:border-gray-600 dark:text-white"
-            />
-            <div
-              className="absolute top-[58%] right-3 flex items-center cursor-pointer text-gray-600 dark:text-gray-300"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
-            </div>
-          </div>
+
           <div>
-            <label htmlFor="phone" className="block text-gray-700 dark:text-gray-300">Phone Number</label>
+            <label
+              htmlFor="phone"
+              className="block text-gray-700 dark:text-gray-300"
+            >
+              Phone Number
+            </label>
             <input
               type="tel"
               id="phone"
@@ -97,25 +103,53 @@ const SignUp = () => {
               className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-transparent dark:border-gray-600 dark:text-white"
             />
           </div>
+
+          <div className="relative">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 dark:text-gray-300"
+            >
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+              required
+              className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-primary dark:bg-transparent dark:border-gray-600 dark:text-white"
+            />
+            <div
+              className="absolute top-[58%] right-3 flex items-center cursor-pointer text-gray-600 dark:text-gray-300"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </div>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
             className="w-full py-2 mt-4 text-white bg-primary rounded-md focus:outline-none dark:bg-primary-dark"
           >
-           {loading ? 'Processing...' : 'Sign Up'}
+            {loading ? "Processing..." : "Sign Up"}
           </button>
         </form>
         {error && <p className="text-red-500 text-start mt-0.5">{error}</p>}
         <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-100">
-          <p>Already have an account?{' '}</p>
-          <Link to="/accounts/login" className="underline ml-2 text-primary dark:text-gray-100 hover:underline font-medium">
+          <p>Already have an account? </p>
+          <Link
+            to="/accounts/login"
+            className="underline ml-2 text-primary dark:text-gray-100 hover:underline font-medium"
+          >
             Sign in
           </Link>
         </p>
       </div>
       <img src={img} alt="" />
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
