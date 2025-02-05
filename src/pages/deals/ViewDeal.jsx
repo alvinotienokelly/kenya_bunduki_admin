@@ -10,11 +10,12 @@ import {
 import DealMeetings from "./DealMeetings";
 import DealTasks from "./DealTasks";
 import DealMilestones from "./DealMilestones";
-import { fetchDeal } from "../../services/api_service";
+import { fetchDeal, expressInterest } from "../../services/api_service";
 import Loading from "../../elements/Loading";
 import moment from "moment";
 import Layout from "../../elements/Layout";
 import Modal from "../../elements/Modal";
+import toast from "react-hot-toast";
 
 const ViewDeal = () => {
   const [activeTab, setActiveTab] = useState("Trail");
@@ -49,8 +50,17 @@ const ViewDeal = () => {
   }
 
   const handleExpressInterest = () => {
-    setShowModal(true);
-    setModalContent("success");
+    try {
+      setShowModal(true);
+      setModalContent("loading");
+      expressInterest(id);
+      setModalContent("success");
+      toast.success("Interest expressed successfully");
+    } catch (error) {
+      console.error("Error expressing interest:", error);
+      setModalContent("error");
+      toast.error("Error expressing interest");
+    }
   };
 
   return (

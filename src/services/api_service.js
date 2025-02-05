@@ -1,4 +1,4 @@
-import api from '../services/AxiosInsance.js';
+import api from "../services/AxiosInsance.js";
 
 // User services
 export const loginUser = async (credentials) => {
@@ -57,54 +57,56 @@ export const getUsersByType = async (userType) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // notifications services
 export const fetchNotifications = async () => {
   try {
-    const response = await api.get('/notifications');
+    const response = await api.get("/notifications");
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 // deals services
 export const fetchDeals = async () => {
   try {
-    const response = await api.get('/deals');
+    const response = await api.get("/deals");
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const fetchMyDeals = async () => {
   try {
-    const response = await api.get('/deals/my-deals');
+    const response = await api.get("/deals/my-deals");
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const getDealsByUserPreference = async () => {
   try {
-    const response = await api.get('/deals/user/preferences');
+    const response = await api.get("/deals/user/preferences");
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const expressInterest = async (dealId) => {
   try {
-    const response = await api.post(`/deals/${dealId}/express-interest`);
+    const response = await api.post(`/deal-access-invites/interest`, {
+      deal_id: dealId,
+    });
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const fetchDealDetails = async (dealId) => {
   try {
@@ -113,7 +115,7 @@ export const fetchDealDetails = async (dealId) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const withdrawInterest = async (dealId) => {
   try {
@@ -122,17 +124,17 @@ export const withdrawInterest = async (dealId) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 // transaction services
 export const fetchTransactions = async () => {
   try {
-    const response = await api.get('/transactions');
+    const response = await api.get("/transactions");
     return response.data;
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const getTasks = async () => {
   try {
@@ -142,7 +144,7 @@ export const getTasks = async () => {
     console.error("Error fetching tasks:", error);
     throw error;
   }
-}
+};
 
 export const getDealMilestones = async (id) => {
   try {
@@ -152,12 +154,14 @@ export const getDealMilestones = async (id) => {
     console.error("Error fetching deal tasks:", error);
     throw error;
   }
-}
+};
 
 export const getMilestones = async (params = {}) => {
   try {
     const queryString = new URLSearchParams(params).toString();
-    const response = await api.get(`/milestones/filter/milestones?${queryString}`);
+    const response = await api.get(
+      `/milestones/filter/milestones?${queryString}`
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching milestones:", error);
@@ -172,7 +176,7 @@ export const addDealMilestone = async (milestoneData) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const deleteDealMilestone = async (id) => {
   try {
@@ -181,7 +185,7 @@ export const deleteDealMilestone = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const updateDealMilestone = async (id, data) => {
   try {
@@ -190,7 +194,7 @@ export const updateDealMilestone = async (id, data) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const getmeetingByDealId = async (id) => {
   try {
@@ -199,7 +203,7 @@ export const getmeetingByDealId = async (id) => {
   } catch (error) {
     throw error;
   }
-}
+};
 
 export const getDealTasks = async (id) => {
   try {
