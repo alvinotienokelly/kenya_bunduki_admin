@@ -24,7 +24,7 @@ const SignUp = () => {
       phone,
       role_id: "dbb96d4c-7678-4644-a070-f6b1b7304075",
     };
-
+ 
     setLoading(true);
     try {
       const response = await registerUser(userData);
