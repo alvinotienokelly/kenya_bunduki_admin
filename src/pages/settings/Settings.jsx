@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
 import OtherSettings from "./OtherSettings";
 import RoleSettings from "./RoleSettings";
+import ContactPersonList from "./ContactPersonList";
 import Layout from "../../elements/Layout";
 
 const Settings = () => {
@@ -29,6 +30,12 @@ const Settings = () => {
                             User Roles
                         </button>
                         <button
+                            className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${activeTab === "contact_persons" ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700" : "text-gray-500 dark:text-gray-400"}`}
+                            onClick={() => handleTabChange("contact_persons")}
+                        >
+                            Contact Persons
+                        </button>
+                        <button
                             className={`text-start py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${activeTab === "other" ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700" : "text-gray-500 dark:text-gray-400"}`}
                             onClick={() => handleTabChange("other")}
                         >
@@ -42,6 +49,9 @@ const Settings = () => {
                         )}
                         {activeTab === "roles" && (
                             <RoleSettings />
+                        )}
+                         {activeTab === "contact_persons" && (
+                            <ContactPersonList />
                         )}
                         {activeTab === "other" && (
                             <OtherSettings />
