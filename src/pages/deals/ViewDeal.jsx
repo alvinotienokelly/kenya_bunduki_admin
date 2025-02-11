@@ -26,10 +26,10 @@ const ViewDeal = () => {
   const [modalContent, setModalContent] = useState("loading");
 
   const tabs = [
-    { name: "Trail", icon: <FaRegFileAlt className="w-5 h-5" /> },
-    { name: "Meetings", icon: <FaUsers className="w-5 h-5" /> },
-    { name: "Transactions", icon: <FaMoneyBillWave className="w-5 h-5" /> },
-    { name: "Tasks", icon: <FaTasks className="w-5 h-5" /> },
+    { name: "Meetings", icon: <FaRegFileAlt className="w-5 h-5" /> },
+    { name: "Documents", icon: <FaUsers className="w-5 h-5" /> },
+    { name: "Folder", icon: <FaMoneyBillWave className="w-5 h-5" /> },
+    { name: "Milestones", icon: <FaTasks className="w-5 h-5" /> },
     { name: "Milestones", icon: <FaFlag className="w-5 h-5" /> },
   ];
 
@@ -229,9 +229,9 @@ const ViewDeal = () => {
         ))}
       </div>
       <div className="mt-4">
-        {activeTab === "Trail" && <p>Audit trail details go here...</p>}
         {activeTab === "Meetings" && <DealMeetings />}
-        {activeTab === "Tasks" && <DealTasks />}
+        {activeTab === "Documents" && <p>Audit trail details go here...</p>}
+        {activeTab === "Folder" && <DealTasks />}
         {activeTab === "Milestones" && <DealMilestones />}
       </div>
     </Layout>

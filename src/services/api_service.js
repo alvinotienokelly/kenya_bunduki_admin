@@ -223,3 +223,42 @@ export const fetchDeal = async (id) => {
     throw error;
   }
 };
+
+export const fetchContactPerson = async (id) => {
+  try {
+    const response = await api.get(`contact-persons/user/contacts`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addContactperson = async (contactData) => {
+  try {
+    const response = await api.post("/contact-persons", contactData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+export const updateContactPerson = async (id, data) => {
+  try {
+    const response = await api.put(`/contact-persons/${id}`, data);
+    JSON.stringify(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteContactPerson = async (id) => {
+  try {
+    const response = await api.delete(`/contact-persons/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
