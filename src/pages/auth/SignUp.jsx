@@ -22,7 +22,7 @@ const SignUp = () => {
       email,
       password,
       phone,
-      role_id: "dbb96d4c-7678-4644-a070-f6b1b7304075",
+      role_id: "2b493de2-8db6-40cb-8d9b-9a19811a0d10",
     };
  
     setLoading(true);
