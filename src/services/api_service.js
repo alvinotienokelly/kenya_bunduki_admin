@@ -224,6 +224,16 @@ export const fetchDeal = async (id) => {
   }
 };
 
+export const fetchSectors = async () => {
+  try {
+    const response = await api.get("/sectors");
+    console.log(JSON.stringify(response));
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const fetchContactPerson = async (id) => {
   try {
     const response = await api.get(`contact-persons/user/contacts`);
@@ -242,8 +252,6 @@ export const addContactperson = async (contactData) => {
   }
 };
 
-
-
 export const updateContactPerson = async (id, data) => {
   try {
     const response = await api.put(`/contact-persons/${id}`, data);
@@ -257,6 +265,35 @@ export const updateContactPerson = async (id, data) => {
 export const deleteContactPerson = async (id) => {
   try {
     const response = await api.delete(`/contact-persons/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createUserTicketPreference = async (preferenceData) => {
+  try {
+    const response = await api.post("/user-ticket-preferences", preferenceData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserTicketPreferences = async () => {
+  try {
+    const response = await api.get(`/user-ticket-preferences`);
+    console.log("The user preferences are", JSON.stringify(response));
+    console.log(JSON.stringify(response));
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateTicketPreference = async (id, data) => {
+  try {
+    const response = await api.put(`/user-ticket-preferences/${id}`, data);
     return response.data;
   } catch (error) {
     throw error;

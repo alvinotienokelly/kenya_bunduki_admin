@@ -30,6 +30,7 @@ api.interceptors.request.use(
       const token = decryptData(encryptedToken);
       if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
+        console.log("token" + token);
       }
     }
     return config;
