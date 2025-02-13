@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { loginUser } from '../../services/api_service';
-import img from '../../assets/img.png'
+import img from '../../assets/noble_login.png'
+import logo from '../../assets/noble_capital_logo.svg';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -34,11 +35,15 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex gap-6 flex-col-reverse md:flex-row items-center bg-white justify-center h-screen bg-cover bg-center signin-background dark:bg-gray-900 p-8 dark:text-white">
-      <img className='' src={img} alt="" />
-      <div className="w-[90%] md:w-[50%] dark:border border-gray-600 rounded-md dark:p-4">
-        <p className="my-4 font-semibold text-[18px] text-black text-center dark:text-gray-300">
-          Login to your account
+    <div className="flex p-6 gap-[3%] flex-col-reverse md:flex-row items-center bg-white justify-center h-[100vh] bg-cover bg-center">
+      <div className="w-full md:w-[50%]">
+      <img className='rounded-lg h-[90vh] w-full  object-cover' src={img} alt="" />
+      </div>
+      <div className="w-full flex flex-col items-center justify-center h-full md:w-[40%] dark:border border-gray-600 rounded-md dark:p-4">
+      <img src={logo} className="h-[80px] mb-6" alt="Noble Capital Logo" />
+
+        <p className="my-4 font-semibold text-[36px] text-black text-center dark:text-gray-300">
+          Log In
         </p>
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
           <div>
@@ -72,7 +77,7 @@ const SignIn = () => {
               className={`w-full py-2 mt-4 text-white bg-primary rounded-md focus:outline-none transition ${loading && 'bg-opacity-50 cursor-not-allowed'
                 }`}
             >
-              {loading ? 'Processing...' : 'Sign In'}
+              {loading ? 'Processing...' : ' Log In'}
             </button>
             {loading && (
               <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-black text-white text-xs rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
