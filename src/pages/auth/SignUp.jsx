@@ -46,6 +46,13 @@ const SignUp = () => {
   };
   return (
     <div className="flex gap-6 flex-col-reverse md:flex-row items-center bg-white justify-center h-screen bg-cover bg-center signin-background dark:bg-gray-900 p-8 dark:text-white">
+      <div className="w-full md:w-[50%]">
+        <img
+          className="rounded-lg h-[90vh] w-full  object-cover"
+          src={img}
+          alt=""
+        />
+      </div>
       <div className="w-full flex flex-col items-center justify-center h-full md:w-[40%] dark:border border-gray-600 rounded-md dark:p-4">
         <p className="my-4 font-semibold text-[18px] text-black text-center dark:text-gray-300">
           Login to your account
@@ -137,22 +144,21 @@ const SignUp = () => {
           </button>
         </form>
         {error && <p className="text-red-500 text-start mt-0.5">{error}</p>}
-        <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-100">
-          <p>Already have an account? </p>
-          <Link
+        <div className="flex items-center w-full justify-between">
+          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-100">
+           
+          </p>
+          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-100">
+            Already have an account?{" "}
+            <Link
             to="/accounts/login"
             className="underline ml-2 text-primary dark:text-gray-100 hover:underline font-medium"
           >
             Sign in
           </Link>
-        </p>
-      </div>
-      <div className="w-full md:w-[50%]">
-        <img
-          className="rounded-lg h-[90vh] w-full  object-cover"
-          src={img}
-          alt=""
-        />
+          </p>
+        </div>
+        
       </div>
     </div>
   );
