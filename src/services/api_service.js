@@ -96,8 +96,6 @@ export const getDealsByUserPreference = async () => {
   }
 };
 
-
-
 export const getAcceptedDealsForInvestor = async () => {
   try {
     const response = await api.get("/deals/accepted-deals");
@@ -310,12 +308,20 @@ export const updateTicketPreference = async (id, data) => {
   }
 };
 
-
-
 // transaction services
 export const getAllInvestorMilestoneStatusesByUser = async () => {
   try {
     const response = await api.get("/investor-milestone-statuses/user");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// tasks services
+export const getUsertasks = async () => {
+  try {
+    const response = await api.get("/tasks/user");
     return response.data;
   } catch (error) {
     throw error;
