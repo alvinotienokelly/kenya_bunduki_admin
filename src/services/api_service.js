@@ -310,3 +310,15 @@ export const updateTicketPreference = async (id, data) => {
     throw error;
   }
 };
+
+
+
+// transaction services
+export const getAllInvestorMilestoneStatusesByUser = async () => {
+  try {
+    const response = await api.get("/investor-milestone-statuses/user");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
