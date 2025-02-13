@@ -32,77 +32,57 @@ const MilestonesTable = ({ milestones, loading, onView, onEdit, onDelete }) => {
     ));
 
   return (
-    <div className="mt-4 overflow-x-auto bg-white dark:bg-gray-800 border dark:border-gray-600 rounded-lg">
-      <table className="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
-        <thead>
-          <tr className="bg-gray-200 dark:bg-gray-700 dark:text-white text-black text-left">
-            <th className="py-2 px-4 border-b dark:border-gray-500 text-start">
-              Deal
-            </th>
-            <th className="py-2 px-4 border-b dark:border-gray-500 text-start">
-              Title
-            </th>
-            <th className="py-2 px-4 border-b dark:border-gray-500 text-start">
-              Description
-            </th>
-            <th className="py-2 px-4 border-b dark:border-gray-500 text-start">
-              Status
-            </th>
-            <th className="py-2 px-4 border-b dark:border-gray-500 text-start">
-              Date
-            </th>
-            {/* <th className="py-2 px-4 border-b dark:border-gray-500 text-center">
-              Actions
-            </th> */}
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
-            renderShimmerRows()
-          ) : milestones?.length > 0 ? (
-            milestones.map((milestone, index) => (
-              <tr
-                key={milestone.id}
-                className={`${
-                  index % 2 === 0
-                    ? "bg-white dark:bg-gray-600"
-                    : "bg-gray-100 dark:bg-gray-700"
-                } text-gray-700 dark:text-gray-100 text-[14px]`}
+    <div className="mt-4 bg-white dark:bg-gray-800  dark:border-gray-600 rounded-lg p-4">
+      {milestones?.length > 0 ? (
+        milestones.map((milestone, index) => (
+          <div
+            key={milestone.id}
+            className={`${"bg-white dark:bg-gray-600"} text-gray-700 border dark:text-gray-100 p-4 rounded-lg mb-4`}
+          >
+            <div className="mb-2">
+              <strong>Project:</strong> {milestone.deal.project}
+            </div>
+            <div className="mb-2">
+              <strong>Milestone:</strong> {milestone.milestone.name}
+            </div>
+            <div className="mb-2">
+              <strong>Description:</strong>{" "}
+              {truncateDescription(milestone.milestone.description)}
+            </div>
+            <div className="mb-2">
+              <strong>Status:</strong> {milestone.status}
+            </div>
+            <div className="mb-2">
+              <strong>Created:</strong>{" "}
+              {new Date(milestone.createdAt).toLocaleDateString()}
+            </div>
+            {/* <div className="flex gap-2 mt-2">
+              <button
+                onClick={() => onView(milestone)}
+                className="text-primary bg-secondary p-2 rounded-full hover:bg-[#D1D7E0]"
               >
-                <td className="py-2 px-4 border-b dark:border-gray-600">
-                  {milestone.deal.project}
-                </td>
-                <td className="py-2 px-4 border-b dark:border-gray-600">
-                  {milestone.milestone.name}
-                </td>
-                <td className="py-2 px-4 border-b dark:border-gray-600">
-                  {truncateDescription(milestone.milestone.description)}
-                </td>
-                <td className="py-2 px-4 border-b dark:border-gray-600">
-                  {milestone.status}
-                </td>
-                <td className="py-2 px-4 border-b dark:border-gray-600">
-                  {new Date(milestone.createdAt).toLocaleDateString()}
-                </td>
-                {/* <td className="py-2 px-4 border-b dark:border-gray-600 text-center flex justify-center gap-2">
-                  <button
-                    onClick={() => onView(milestone)}
-                    className="text-primary bg-secondary p-2 rounded-full hover:bg-[#D1D7E0]"
-                  >
-                    <FaEye size={16} />
-                  </button>
-                </td> */}
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="py-4 px-4 text-center">
-                No milestones available.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+                <FaEye size={16} />
+              </button>
+              <button
+                onClick={() => onEdit(milestone)}
+                className="text-primary bg-secondary p-2 rounded-full hover:bg-[#D1D7E0]"
+              >
+                <CiEdit size={20} />
+              </button>
+              <button
+                onClick={() => onDelete(milestone)}
+                className="text-primary bg-secondary p-2 rounded-full hover:bg-[#D1D7E0]"
+              >
+                <FaTrashAlt size={16} />
+              </button>
+            </div> */}
+          </div>
+        ))
+      ) : (
+        <div className="text-center text-gray-500 dark:text-gray-400">
+          No milestones available.
+        </div>
+      )}
     </div>
   );
 };

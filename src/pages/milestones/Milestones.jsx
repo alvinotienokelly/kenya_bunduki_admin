@@ -22,6 +22,7 @@ const Milestones = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const { id: dealId } = useParams();
+  const [activeTab, setActiveTab] = useState("pending");
 
   const fetchMilestones = async (filters = {}) => {
     try {
@@ -106,54 +107,39 @@ const Milestones = () => {
   useEffect(() => {
     fetchMilestones();
   }, []);
-
+  const filteredMilestones = milestones.filter((milestone) =>
+    activeTab === "pending"
+      ? milestone.status !== "Complete"
+      : milestone.status === "Complete"
+  );
   return (
     <Layout title="Milestones">
       <div className="mt-4 p-1">
-        <div className="w-full justify-between flex gap-4">
-          <div className="flex items-center gap-4">
-            <select
-              className="px-3 py-1 border rounded-md bg-transparent"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="">All Statuses</option>
-              <option value="Pending">Pending</option>
-              <option value="Complete">Complete</option>
-            </select>
-
-            <input
-              type="text"
-              className="px-3 py-1 border rounded-md"
-              placeholder="Created by (Investor)"
-              value={createdBy}
-              onChange={(e) => setCreatedBy(e.target.value)}
-            />
-
-            <input
-              type="date"
-              className="px-3 py-1 border rounded-md"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-            <input
-              type="date"
-              className="px-3 py-1 border rounded-md"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </div>
-
+        <div className="w-full flex gap-4 border-b">
           <button
-            onClick={handleFilterChange}
-            className="bg-primary text-white px-6 py-1 text-[14px] rounded-md"
+            className={`px-4 py-2 text-sm font-medium ${
+              activeTab === "pending"
+                ? "border-b-2 border-primary text-primary"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("pending")}
           >
-            Filter
+            Pending
+          </button>
+          <button
+            className={`px-4 py-2 text-sm font-medium ${
+              activeTab === "complete"
+                ? "border-b-2 border-primary text-primary"
+                : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("complete")}
+          >
+            Complete
           </button>
         </div>
 
         <MilestonesTable
-          milestones={milestones}
+          milestones={filteredMilestones}
           loading={loading}
           onView={(milestone) => handleOpenModal(milestone, "view")}
           onEdit={(milestone) => handleOpenModal(milestone, "edit")}
