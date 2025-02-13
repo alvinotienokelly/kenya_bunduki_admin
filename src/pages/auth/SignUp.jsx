@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { registerUser } from "../../services/api_service";
-import img from "../../assets/img.png";
+import img from "../../assets/noble_login.png";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -24,7 +24,7 @@ const SignUp = () => {
       phone,
       role_id: "2b493de2-8db6-40cb-8d9b-9a19811a0d10",
     };
- 
+
     setLoading(true);
     try {
       const response = await registerUser(userData);
@@ -46,11 +46,11 @@ const SignUp = () => {
   };
   return (
     <div className="flex gap-6 flex-col-reverse md:flex-row items-center bg-white justify-center h-screen bg-cover bg-center signin-background dark:bg-gray-900 p-8 dark:text-white">
-      <div className="w-[90%] dark:border border-gray-700 dark:p-4 rounded-lg">
+      <div className="w-full flex flex-col items-center justify-center h-full md:w-[40%] dark:border border-gray-600 rounded-md dark:p-4">
         <p className="my-4 font-semibold text-[18px] text-black text-center dark:text-gray-300">
           Login to your account
         </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 w-full">
           <div>
             <label
               htmlFor="name"
@@ -147,7 +147,13 @@ const SignUp = () => {
           </Link>
         </p>
       </div>
-      <img src={img} alt="" />
+      <div className="w-full md:w-[50%]">
+        <img
+          className="rounded-lg h-[90vh] w-full  object-cover"
+          src={img}
+          alt=""
+        />
+      </div>
     </div>
   );
 };

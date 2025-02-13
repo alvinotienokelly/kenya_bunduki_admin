@@ -12,7 +12,6 @@ export const loginUser = async (credentials) => {
 
 export const registerUser = async (userData) => {
   try {
-    alert("registerUser" + JSON.stringify(userData));
     const response = await api.post("/users/signup", userData);
     return response.data;
   } catch (error) {
