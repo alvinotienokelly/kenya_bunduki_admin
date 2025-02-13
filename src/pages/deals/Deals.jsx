@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../elements/Layout";
-import { fetchDeals } from "../../services/api_service";
+import { fetchDeals, expressInterest } from "../../services/api_service";
 import Modal from "../../elements/Modal";
 import { FaAngleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -26,9 +26,10 @@ const Deals = () => {
     getDeals();
   }, []);
 
-  const handleExpressInterest = () => {
+  const handleExpressInterest = (deal_id) => {
     setShowModal(true);
     setModalContent("loading");
+    expressInterest(deal_id);
 
     setTimeout(() => {
       setModalContent("success");
@@ -94,7 +95,7 @@ const Deals = () => {
                 </div>
                 <div className="flex px-4 pb-4 items-center w-full gap-4 mt-6">
                   <button
-                    onClick={handleExpressInterest}
+                    onClick={() => handleExpressInterest(deal.deal_id)}
                     className="bg-primary text-[13px] text-white px-2 py-0.5 w-1/2 rounded"
                   >
                     Interested

@@ -3,6 +3,7 @@ import Layout from "../../elements/Layout";
 import { getAcceptedDealsForInvestor } from "../../services/api_service";
 import Modal from "../../elements/Modal";
 import { FaExclamationTriangle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const MyDeals = () => {
   const [deals, setDeals] = useState([]);
@@ -10,6 +11,7 @@ const MyDeals = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [selectedDeal, setSelectedDeal] = useState(null);
+  const navigate = useNavigate();
 
   const getDeals = async () => {
     try {
@@ -135,7 +137,10 @@ const MyDeals = () => {
                 >
                   Withdraw
                 </button>
-                <button className="border border-primary text-primary font-medium w-1/2 text-[13px] px-2 py-1 rounded">
+                <button
+                  onClick={() => navigate(`/dashboard/deals/${deal.deal_id}`)}
+                  className="border border-primary text-primary font-medium w-1/2 text-[13px] px-2 py-1 rounded"
+                >
                   View
                 </button>
               </div>
