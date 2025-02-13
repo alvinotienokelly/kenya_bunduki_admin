@@ -51,7 +51,7 @@ const SideMenu = () => {
           <Link to="/dashboard/milestones" className={getLinkClasses(['/dashboard/milestones'])}>
             <FaFlag size={24} className="mr-2" /> Milestones
           </Link>
-          <Link
+          {/* <Link
             to="/dashboard/target-companies"
             className={getLinkClasses(['/dashboard/target-companies'])}
           >
@@ -59,7 +59,7 @@ const SideMenu = () => {
           </Link>
           <Link to="/dashboard/audit-logs" className={getLinkClasses(['/dashboard/audit-logs'])}>
             <FaDatabase size={24} className="mr-2" /> Audit Logs
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="flex flex-col w-full border-t border-primary dark:border-gray-700 font-medium">
