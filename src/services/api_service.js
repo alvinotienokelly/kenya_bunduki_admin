@@ -97,6 +97,17 @@ export const getDealsByUserPreference = async () => {
   }
 };
 
+
+
+export const getAcceptedDealsForInvestor = async () => {
+  try {
+    const response = await api.get("/deals/accepted-deals");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const expressInterest = async (dealId) => {
   try {
     const response = await api.post(`/deal-access-invites/interest`, {
