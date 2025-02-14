@@ -5,7 +5,9 @@ import {
   expressInterest,
   fetchSectors,
   fetchSubsectors,
+  fetchContinents,
   fetchCountries,
+  fetchRegions,
 } from "../../services/api_service";
 import Modal from "../../elements/Modal";
 import { FaAngleLeft } from "react-icons/fa";
@@ -13,7 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 const Deals = () => {
   const [deals, setDeals] = useState([]);
+  const [regions, setRegions] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState("");
   const [sectors, setSectors] = useState([]);
+  const [continents, setContinents] = useState([]);
+  const [selectedContinent, setSelectedContinent] = useState("");
   const [countries, setCountries] = useState([]);
   const [subsectors, setSubSectors] = useState([]);
   const [selectedSector, setSelectedSector] = useState("");
@@ -43,6 +49,15 @@ const Deals = () => {
     }
   };
 
+  const getContinents = async () => {
+    try {
+      const response = await fetchContinents();
+      setContinents(response.continents);
+    } catch (error) {
+      console.error("Failed to fetch sectors", error);
+    }
+  };
+
   const getCountries = async () => {
     try {
       const response = await fetchCountries();
@@ -60,12 +75,21 @@ const Deals = () => {
       console.error("Failed to fetch sectors", error);
     }
   };
-
+  const getRegions = async () => {
+    try {
+      const response = await fetchRegions();
+      setRegions(response.regions);
+    } catch (error) {
+      console.error("Failed to fetch sectors", error);
+    }
+  };
   useEffect(() => {
     getDeals();
     getSectors();
     getSubSectors();
     getCountries();
+    getContinents();
+    getRegions();
   }, []);
 
   const handleExpressInterest = (deal_id) => {
@@ -97,7 +121,31 @@ const Deals = () => {
     >
       <div className="relative mb-4 flex gap-4">
         <select
-          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-[20%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedContinent}
+          onChange={(e) => setSelectedSector(e.target.value)}
+        >
+          <option value="">All Continents</option>
+          {continents.map((continent) => (
+            <option key={continent.continent_id} value={continent.continent_id}>
+              {continent.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-[20%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedRegion}
+          onChange={(e) => setSelectedSector(e.target.value)}
+        >
+          <option value="">All Continents</option>
+          {regions.map((region) => (
+            <option key={region.region_id} value={region.region_id}>
+              {region.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-[20%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           value={selectedCountry}
           onChange={(e) => setSelectedSector(e.target.value)}
         >
@@ -109,7 +157,7 @@ const Deals = () => {
           ))}
         </select>
         <select
-          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-[20%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           value={selectedSector}
           onChange={(e) => setSelectedSector(e.target.value)}
         >
@@ -121,7 +169,7 @@ const Deals = () => {
           ))}
         </select>
         <select
-          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-[20%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           value={selectedSubSector}
           onChange={(e) => setSelectedSubSector(e.target.value)}
         >

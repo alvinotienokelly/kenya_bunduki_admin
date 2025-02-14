@@ -258,6 +258,23 @@ export const fetchCountries = async () => {
     throw error;
   }
 };
+export const fetchRegions = async () => {
+  try {
+    const response = await api.get("/regions");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchContinents = async () => {
+  try {
+    const response = await api.get("/continents");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const fetchContactPerson = async (id) => {
   try {
