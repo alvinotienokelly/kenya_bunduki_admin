@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../elements/Layout";
-import { fetchDeals, expressInterest } from "../../services/api_service";
+import {
+  fetchDeals,
+  expressInterest,
+  fetchSectors,
+  fetchSubsectors,
+  fetchCountries,
+} from "../../services/api_service";
 import Modal from "../../elements/Modal";
 import { FaAngleLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const Deals = () => {
   const [deals, setDeals] = useState([]);
+  const [sectors, setSectors] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [subsectors, setSubSectors] = useState([]);
+  const [selectedSector, setSelectedSector] = useState("");
+  const [selectedSubSector, setSelectedSubSector] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("loading");
@@ -22,8 +34,38 @@ const Deals = () => {
     }
   };
 
+  const getSectors = async () => {
+    try {
+      const response = await fetchSectors();
+      setSectors(response.sectors);
+    } catch (error) {
+      console.error("Failed to fetch sectors", error);
+    }
+  };
+
+  const getCountries = async () => {
+    try {
+      const response = await fetchCountries();
+      setCountries(response.countries);
+    } catch (error) {
+      console.error("Failed to fetch sectors", error);
+    }
+  };
+
+  const getSubSectors = async () => {
+    try {
+      const response = await fetchSubsectors();
+      setSubSectors(response.subsectors);
+    } catch (error) {
+      console.error("Failed to fetch sectors", error);
+    }
+  };
+
   useEffect(() => {
     getDeals();
+    getSectors();
+    getSubSectors();
+    getCountries();
   }, []);
 
   const handleExpressInterest = (deal_id) => {
@@ -43,16 +85,54 @@ const Deals = () => {
   return (
     <Layout
       title="Deals"
-      rightContent={
-        <div className="flex items-center px-2 border -mt-6 rounded-md">
-          <input
-            type="text"
-            placeholder="Search"
-            className="outline-none py-1 px-3 text-[14px] text-gray-400"
-          />
-        </div>
-      }
+      // rightContent={
+      //   <div className="flex items-center px-2 border -mt-6 rounded-md">
+      //     <input
+      //       type="text"
+      //       placeholder="Search"
+      //       className="outline-none py-1 px-3 text-[14px] text-gray-400"
+      //     />
+      //   </div>
+      // }
     >
+      <div className="relative mb-4 flex gap-4">
+        <select
+          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedCountry}
+          onChange={(e) => setSelectedSector(e.target.value)}
+        >
+          <option value="">All Countries</option>
+          {countries.map((country) => (
+            <option key={country.country_id} value={country.country_id}>
+              {country.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedSector}
+          onChange={(e) => setSelectedSector(e.target.value)}
+        >
+          <option value="">All Sectors</option>
+          {sectors.map((sector) => (
+            <option key={sector.id} value={sector.id}>
+              {sector.name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedSubSector}
+          onChange={(e) => setSelectedSubSector(e.target.value)}
+        >
+          <option value="">All Subsectors</option>
+          {subsectors.map((subsector) => (
+            <option key={subsector.id} value={subsector.id}>
+              {subsector.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-2">
         {loading
           ? Array.from({ length: 5 }).map((_, index) => (

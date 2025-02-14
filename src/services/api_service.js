@@ -235,7 +235,24 @@ export const fetchDeal = async (id) => {
 export const fetchSectors = async () => {
   try {
     const response = await api.get("/sectors");
-    console.log(JSON.stringify(response));
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchSubsectors = async () => {
+  try {
+    const response = await api.get("/subsectors");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchCountries = async () => {
+  try {
+    const response = await api.get("/countries");
     return response.data;
   } catch (error) {
     throw error;
