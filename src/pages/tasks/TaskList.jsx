@@ -7,6 +7,7 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("incomplete"); // Tabs: 'incomplete' | 'complete'
+  const [selectedProject, setSelectedProject] = useState("");
 
   const fetchTasks = async () => {
     setLoading(true);
@@ -33,17 +34,22 @@ const TaskList = () => {
   useEffect(() => {
     fetchTasks();
   }, []);
+  const uniqueProjects = [...new Set(tasks.map((task) => task.deal.project))];
 
-  const filteredTasks = tasks.filter((task) =>
-    activeTab === "incomplete"
-      ? task.status !== "Complete"
-      : task.status === "Complete"
-  );
+  const filteredTasks = tasks
+    .filter((task) =>
+      activeTab === "incomplete"
+        ? task.status !== "Complete"
+        : task.status === "Complete"
+    )
+    .filter((task) =>
+      selectedProject ? task.deal.project === selectedProject : true
+    );
 
   return (
     <Layout title="Tasks">
       <h1 className="text-2xl font-bold mb-4 mt-4">Tasks</h1>
-      <div className="relative mb-4">
+      <div className="relative mb-4 flex gap-4">
         <input
           type="text"
           placeholder="Search tasks..."
@@ -77,6 +83,18 @@ const TaskList = () => {
             d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-1.35 6.15z"
           />
         </svg>
+        <select
+          className="w-[50%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedProject}
+          onChange={(e) => setSelectedProject(e.target.value)}
+        >
+          <option value="">All Projects</option>
+          {uniqueProjects.map((project) => (
+            <option key={project} value={project}>
+              {project}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="flex mb-6 border-b">
