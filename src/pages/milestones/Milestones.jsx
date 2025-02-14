@@ -23,6 +23,7 @@ const Milestones = () => {
   const [endDate, setEndDate] = useState("");
   const { id: dealId } = useParams();
   const [activeTab, setActiveTab] = useState("pending");
+  const [selectedDeal, setSelectedDeal] = useState("");
 
   const fetchMilestones = async (filters = {}) => {
     try {
@@ -107,16 +108,24 @@ const Milestones = () => {
   useEffect(() => {
     fetchMilestones();
   }, []);
-  const filteredMilestones = milestones.filter((milestone) =>
-    activeTab === "pending"
-      ? milestone.status !== "Complete"
-      : milestone.status === "Complete"
-  );
+  const uniqueProjects = [
+    ...new Set(milestones.map((milestone) => milestone.deal.project)),
+  ];
+
+  const filteredMilestones = milestones
+    .filter((milestone) =>
+      activeTab === "pending"
+        ? milestone.status !== "Complete"
+        : milestone.status === "Complete"
+    )
+    .filter((milestone) =>
+      selectedDeal ? milestone.deal.project === selectedDeal : true
+    );
   return (
     <Layout title="Milestones">
       <h1 className="text-2xl font-bold mb-4 mt-4">Milestones</h1>
 
-      <div className="relative mb-4">
+      <div className="relative mb-4 flex gap-4">
         <input
           type="text"
           placeholder="Search milestones..."
@@ -149,6 +158,18 @@ const Milestones = () => {
             d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-1.35 6.15z"
           />
         </svg>
+        <select
+          className="w-[50%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          value={selectedDeal}
+          onChange={(e) => setSelectedDeal(e.target.value)}
+        >
+          <option value="">All Projects</option>
+          {uniqueProjects.map((project) => (
+            <option key={project} value={project}>
+              {project}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="mt-4 p-1">
