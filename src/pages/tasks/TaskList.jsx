@@ -42,41 +42,42 @@ const TaskList = () => {
 
   return (
     <Layout title="Tasks">
-
-       
-    <h1 className="text-2xl font-bold mb-4 mt-4">Tasks</h1>
-    <div className="relative mb-4">
-
+      <h1 className="text-2xl font-bold mb-4 mt-4">Tasks</h1>
+      <div className="relative mb-4">
         <input
-            type="text"
-            placeholder="Search tasks..."
-            className="w-[50%] pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-            onChange={(e) => {
-                const searchTerm = e.target.value.toLowerCase();
-                setTasks((prevTasks) =>
-                    prevTasks.filter((task) =>
-                        task.title.toLowerCase().includes(searchTerm)
-                    )
-                );
-            }}
+          type="text"
+          placeholder="Search tasks..."
+          className="w-[50%] pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          onChange={(e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm === "") {
+              fetchTasks();
+            } else {
+              setTasks((prevTasks) =>
+                prevTasks.filter((task) =>
+                  task.title.toLowerCase().includes(searchTerm)
+                )
+              );
+            }
+          }}
         />
         <svg
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            width="20"
-            height="20"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          width="20"
+          height="20"
         >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-1.35 6.15z"
-            />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-1.35 6.15z"
+          />
         </svg>
-    </div>
+      </div>
 
       <div className="flex mb-6 border-b">
         <button
@@ -129,11 +130,11 @@ const TaskList = () => {
                             : "text-yellow-500"
                         }`}
                       >
-                        {task.status}
+                        <strong>{task.status}</strong>
                       </span>
                     </p>
                   </div>
-                 
+
                   <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">
                     {task.title}
                   </h3>

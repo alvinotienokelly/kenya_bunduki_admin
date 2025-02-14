@@ -114,6 +114,43 @@ const Milestones = () => {
   );
   return (
     <Layout title="Milestones">
+      <h1 className="text-2xl font-bold mb-4 mt-4">Milestones</h1>
+
+      <div className="relative mb-4">
+        <input
+          type="text"
+          placeholder="Search milestones..."
+          className="w-[50%] pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          onChange={(e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm === "") {
+              fetchMilestones();
+            } else {
+              const searched = milestones.filter((milestone) =>
+                milestone.milestone.name.toLowerCase().includes(searchTerm)
+              );
+              setMilestones(searched);
+            }
+          }}
+        />
+        <svg
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          width="20"
+          height="20"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1118 10.5a7.5 7.5 0 01-1.35 6.15z"
+          />
+        </svg>
+      </div>
+
       <div className="mt-4 p-1">
         <div className="w-full flex gap-4 border-b">
           <button

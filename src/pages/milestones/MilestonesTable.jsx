@@ -39,9 +39,24 @@ const MilestonesTable = ({ milestones, loading, onView, onEdit, onDelete }) => {
             key={milestone.id}
             className={`${"bg-white dark:bg-gray-600"} text-gray-700 border dark:text-gray-100 p-4 rounded-lg mb-4`}
           >
-            <div className="mb-2">
-              <strong>Project:</strong> {milestone.deal.project}
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                <strong>Project:</strong> {milestone.deal.project}
+              </h3>
+              <p className="text-sm">
+                {/* <strong>Status:</strong>{" "} */}
+                <span
+                  className={`${
+                    milestone.status === "Complete"
+                      ? "text-green-500"
+                      : "text-yellow-500"
+                  }`}
+                >
+                  <strong>{milestone.status}</strong>
+                </span>
+              </p>
             </div>
+
             <div className="mb-2">
               <strong>Milestone:</strong> {milestone.milestone.name}
             </div>
@@ -49,9 +64,7 @@ const MilestonesTable = ({ milestones, loading, onView, onEdit, onDelete }) => {
               <strong>Description:</strong>{" "}
               {truncateDescription(milestone.milestone.description)}
             </div>
-            <div className="mb-2">
-              <strong>Status:</strong> {milestone.status}
-            </div>
+            <div className="mb-2"></div>
             <div className="mb-2">
               <strong>Created:</strong>{" "}
               {new Date(milestone.createdAt).toLocaleDateString()}
