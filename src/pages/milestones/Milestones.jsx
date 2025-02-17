@@ -30,7 +30,9 @@ const Milestones = () => {
       setLoading(true);
       const response = await getAllInvestorMilestoneStatusesByUser();
       console.log("User milestones" + JSON.stringify(response));
-      setMilestones(response.milestoneStatuses);
+      if (response.status) {
+        setMilestones(response.milestoneStatuses);
+      }
     } catch (error) {
       console.error("Error fetching milestones:", error);
       toast.error("Error fetching milestones");

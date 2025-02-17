@@ -13,7 +13,9 @@ const TaskList = () => {
     setLoading(true);
     try {
       const response = await getUsertasks();
-      setTasks(response.tasks);
+      if (response.status) {
+        setTasks(response.tasks);
+      }
     } catch (error) {
       toast.error("Error fetching tasks");
     } finally {
