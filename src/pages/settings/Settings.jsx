@@ -7,6 +7,7 @@ import GeographicFocus from "./GeographicFocus";
 import FundStrategy from "./FundStrategy";
 import Layout from "../../elements/Layout";
 import SectorFocus from "./SectorFocus";
+import DealTypePreference from "./DealTypePreference";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("general");
@@ -49,6 +50,16 @@ const Settings = () => {
               onClick={() => handleTabChange("contact_persons")}
             >
               Contact Persons
+            </button>
+            <button
+              className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
+                activeTab === "deal_type"
+                  ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700"
+                  : "text-gray-500 dark:text-gray-400"
+              }`}
+              onClick={() => handleTabChange("deal_type")}
+            >
+              Deal Type
             </button>
             <button
               className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
@@ -97,6 +108,7 @@ const Settings = () => {
             {activeTab === "roles" && <RoleSettings />}
             {activeTab === "contact_persons" && <ContactPersonList />}
             {activeTab === "fund_strategy" && <FundStrategy />}
+            {activeTab === "deal_type" && <DealTypePreference />}
             {activeTab === "geographic_focus" && <GeographicFocus />}
             {activeTab === "sector_focus" && <SectorFocus />}
             {activeTab === "other" && <OtherSettings />}

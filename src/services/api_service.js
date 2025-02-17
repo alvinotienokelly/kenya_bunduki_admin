@@ -361,3 +361,21 @@ export const getUsertasks = async () => {
     throw error;
   }
 };
+
+export const createMultipleDealTypePreferences = async (data) => {
+  try {
+    const response = await api.post("/deal-type-preferences/multiple", data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserMultipleDealTypePreferences = async () => {
+  try {
+    const response = await api.get("/deal-type-preferences/unique");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
