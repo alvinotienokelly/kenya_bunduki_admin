@@ -19,13 +19,10 @@ const DealTypePreference = () => {
   const fetchDealTypePreferences = async () => {
     try {
       const response = await getUserMultipleDealTypePreferences();
-      console.log("The preference" + JSON.stringify(response.preferences));
-
       const userDealTypes = response.preferences.map((dealType) => ({
         value: dealType.deal_type,
         label: dealType.deal_type,
       }));
-      console.log("The user preference" + JSON.stringify(userDealTypes));
       setSelectedDealTypes(userDealTypes);
     } catch (error) {
       toast.error("Failed to fetch deal type preferences.");
@@ -45,6 +42,7 @@ const DealTypePreference = () => {
       deal_types: dealTypeValues,
     });
     toast.success("Deal type preferences saved successfully!");
+    fetchDealTypePreferences();
   };
 
   const dealTypeOptions = dealTypes.map((dealType) => ({
