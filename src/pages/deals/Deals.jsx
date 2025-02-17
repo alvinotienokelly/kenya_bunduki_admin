@@ -137,7 +137,7 @@ const Deals = () => {
           value={selectedRegion}
           onChange={(e) => setSelectedSector(e.target.value)}
         >
-          <option value="">All Continents</option>
+          <option value="">All Regions</option>
           {regions.map((region) => (
             <option key={region.region_id} value={region.region_id}>
               {region.name}

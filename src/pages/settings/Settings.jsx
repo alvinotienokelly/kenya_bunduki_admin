@@ -3,8 +3,10 @@ import GeneralSettings from "./GeneralSettings";
 import OtherSettings from "./OtherSettings";
 import RoleSettings from "./RoleSettings";
 import ContactPersonList from "./ContactPersonList";
+import GeographicFocus from "./GeographicFocus";
 import FundStrategy from "./FundStrategy";
 import Layout from "../../elements/Layout";
+import SectorFocus from "./SectorFocus";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("general");
@@ -17,7 +19,7 @@ const Settings = () => {
     <Layout title="Settings">
       <div className="border-t border-gray-200 pt-4 mx-auto mt-4 dark:border-gray-700 dark:bg-gray-900">
         <div className="flex flex-col md:flex-row items-start gap-6">
-          <div className="w-full md:w-[20%] flex border-b mb-6 md:flex-col">
+          <div className="w-full md:w-[30%] flex border-b mb-6 md:flex-col">
             <button
               className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
                 activeTab === "general"
@@ -59,6 +61,26 @@ const Settings = () => {
               Fund Strategy & preferences
             </button>
             <button
+              className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
+                activeTab === "sector_focus"
+                  ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700"
+                  : "text-gray-500 dark:text-gray-400"
+              }`}
+              onClick={() => handleTabChange("sector_focus")}
+            >
+              Sector Focus
+            </button>
+            <button
+              className={`text-start py-1.5 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
+                activeTab === "geographic_focus"
+                  ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700"
+                  : "text-gray-500 dark:text-gray-400"
+              }`}
+              onClick={() => handleTabChange("geographic_focus")}
+            >
+              Geographic Focus
+            </button>
+            <button
               className={`text-start py-2 px-4 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-r-md ${
                 activeTab === "other"
                   ? "border-l-2 border-primary dark:border-white text-primary font-semibold dark:text-white dark:hover:bg-gray-700"
@@ -75,6 +97,8 @@ const Settings = () => {
             {activeTab === "roles" && <RoleSettings />}
             {activeTab === "contact_persons" && <ContactPersonList />}
             {activeTab === "fund_strategy" && <FundStrategy />}
+            {activeTab === "geographic_focus" && <GeographicFocus />}
+            {activeTab === "sector_focus" && <SectorFocus />}
             {activeTab === "other" && <OtherSettings />}
           </div>
         </div>
