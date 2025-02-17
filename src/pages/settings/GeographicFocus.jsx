@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   fetchContinents,
   fetchCountries,
+  getUserContinentPreferences,
   fetchRegions,
 } from "../../services/api_service";
 import { GoPlus } from "react-icons/go";
@@ -9,13 +10,14 @@ import { FaEye, FaTrashAlt } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import Modal from "../../elements/Modal";
 import toast from "react-hot-toast";
+import Select from "react-select";
 
 const GeographicFocus = () => {
   const [regions, setRegions] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("");
   const [sectors, setSectors] = useState([]);
   const [continents, setContinents] = useState([]);
-  const [selectedContinent, setSelectedContinent] = useState("");
+  const [selectedContinents, setSelectedContinents] = useState([]);
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
 
@@ -28,6 +30,18 @@ const GeographicFocus = () => {
     }
   };
 
+  const fetchUserContinents = async () => {
+    try {
+      const response = await getUserContinentPreferences();
+      const userContinents = response.preferences.map((continent) => ({
+        value: continent.continent.continent_id,
+        label: continent.continent.name,
+      }));
+      setSelectedContinents(userContinents);
+    } catch (error) {
+      toast.error("Failed to fetch deal type preferences.");
+    }
+  };
   const getCountries = async () => {
     try {
       const response = await fetchCountries();
@@ -77,28 +91,29 @@ const GeographicFocus = () => {
     getCountries();
     getContinents();
     getRegions();
+    fetchUserContinents();
   }, []);
 
+  const continentOptions = continents.map((dealType) => ({
+    value: dealType,
+    label: dealType,
+  }));
   return (
     <div className="">
       <div className="">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative mb-4 flex gap-4">
-            <select
-              className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              value={selectedContinent}
-              onChange={(e) => setSelectedContinent(e.target.value)}
-            >
-              <option value="">All Continents</option>
-              {continents.map((continent) => (
-                <option
-                  key={continent.continent_id}
-                  value={continent.continent_id}
-                >
-                  {continent.name}
-                </option>
-              ))}
-            </select>
+            <Select
+              id="dealTypes"
+              isMulti
+              options={continents.map((continent) => ({
+                value: continent.continent_id,
+                label: continent.name,
+              }))} // Ensure options have value-label pairs
+              onChange={setSelectedContinents} // Update state when user selects
+              value={selectedContinents} // Show previously selected continents
+              className="w-[30%] pl-3 pr-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+            />
             <select
               className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               value={selectedRegion}

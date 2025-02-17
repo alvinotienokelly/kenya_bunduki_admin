@@ -379,3 +379,11 @@ export const getUserMultipleDealTypePreferences = async () => {
     throw error;
   }
 };
+export const getUserContinentPreferences = async () => {
+  try {
+    const response = await api.get("/continent-preferences/user");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
