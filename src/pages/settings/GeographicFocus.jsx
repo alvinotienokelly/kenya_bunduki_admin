@@ -3,7 +3,9 @@ import {
   fetchContinents,
   fetchCountries,
   getUserContinentPreferences,
+  getRegionPreferences,
   fetchRegions,
+  getCountryPreferences,
 } from "../../services/api_service";
 import { GoPlus } from "react-icons/go";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
@@ -18,8 +20,10 @@ const GeographicFocus = () => {
   const [sectors, setSectors] = useState([]);
   const [continents, setContinents] = useState([]);
   const [selectedContinents, setSelectedContinents] = useState([]);
+  const [selectedRegions, setSelectedRegions] = useState([]);
+
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountries, setSelectedCountries] = useState("");
 
   const getContinents = async () => {
     try {
@@ -38,6 +42,31 @@ const GeographicFocus = () => {
         label: continent.continent.name,
       }));
       setSelectedContinents(userContinents);
+    } catch (error) {
+      toast.error("Failed to fetch deal type preferences.");
+    }
+  };
+
+  const fetchUserCountries = async () => {
+    try {
+      const response = await getCountryPreferences();
+      const userCountries = response.preferences.map((country) => ({
+        value: country.country.country_id,
+        label: country.country.name,
+      }));
+      setSelectedCountries(userCountries);
+    } catch (error) {
+      toast.error("Failed to fetch deal type preferences.");
+    }
+  };
+  const fetchUserRegions = async () => {
+    try {
+      const response = await getRegionPreferences();
+      const userRegions = response.preferences.map((region) => ({
+        value: region.region.region_id,
+        label: region.region.name,
+      }));
+      setSelectedRegions(userRegions);
     } catch (error) {
       toast.error("Failed to fetch deal type preferences.");
     }
@@ -91,13 +120,26 @@ const GeographicFocus = () => {
     getCountries();
     getContinents();
     getRegions();
+    fetchUserRegions();
     fetchUserContinents();
+    fetchUserCountries();
   }, []);
 
   const continentOptions = continents.map((dealType) => ({
     value: dealType,
     label: dealType,
   }));
+
+  const regionOptions = regions.map((region) => ({
+    value: region,
+    label: region,
+  }));
+
+  const countryOptions = regions.map((country) => ({
+    value: country,
+    label: country,
+  }));
+
   return (
     <div className="">
       <div className="">
@@ -114,30 +156,28 @@ const GeographicFocus = () => {
               value={selectedContinents} // Show previously selected continents
               className="w-[30%] pl-3 pr-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <select
-              className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              value={selectedRegion}
-              onChange={(e) => setSelectedRegion(e.target.value)}
-            >
-              <option value="">All Regions</option>
-              {regions.map((region) => (
-                <option key={region.region_id} value={region.region_id}>
-                  {region.name}
-                </option>
-              ))}
-            </select>
-            <select
-              className="w-[30%] pl-3 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-              value={selectedCountry}
-              onChange={(e) => setSelectedCountry(e.target.value)}
-            >
-              <option value="">All Countries</option>
-              {countries.map((country) => (
-                <option key={country.country_id} value={country.country_id}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
+            <Select
+              id="regions"
+              isMulti
+              options={regions.map((region) => ({
+                value: region.region_id,
+                label: region.name,
+              }))} // Ensure options have value-label pairs
+              onChange={setSelectedRegions} // Update state when user selects
+              value={selectedRegions} // Show previously selected continents
+              className="w-[30%] pl-3 pr-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+           <Select
+              id="countries"
+              isMulti
+              options={countries.map((country) => ({
+                value: country.country_id,
+                label: country.name,
+              }))} // Ensure options have value-label pairs
+              onChange={setSelectedCountries} // Update state when user selects
+              value={selectedCountries} // Show previously selected continents
+              className="w-[30%] pl-3 pr-4 py-2  focus:outline-none focus:ring-2 focus:ring-primary"
+            />
           </div>
         </form>
       </div>

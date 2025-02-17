@@ -387,3 +387,20 @@ export const getUserContinentPreferences = async () => {
     throw error;
   }
 };
+
+export const getRegionPreferences = async () => {
+  try {
+    const response = await api.get("/region-preferences");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getCountryPreferences = async () => {
+  try {
+    const response = await api.get("/country-preferences");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
