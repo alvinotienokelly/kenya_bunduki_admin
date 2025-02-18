@@ -449,3 +449,39 @@ export const cancelBooking = async (bookingId) => {
     throw error;
   }
 };
+
+export const fetchUsers = async () => {
+  try {
+    const response = await api.get("/users");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateUserRole = async (userId, newRole) => {
+  try {
+    const response = await api.put(`/users/${userId}/role`, { role: newRole });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deactivateUser = async (userId) => {
+  try {
+    const response = await api.put(`/users/${userId}/deactivate`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const banUser = async (userId) => {
+  try {
+    const response = await api.put(`/users/${userId}/ban`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -49,8 +49,8 @@ const SideMenu = () => {
             <FaFileInvoice size={24} className="mr-2" /> Transactions
           </Link> */}
           <Link
-            to="/dashboard/tasks"
-            className={getLinkClasses(["/dashboard/tasks"])}
+            to="/dashboard/users-management"
+            className={getLinkClasses(["/dashboard/users-management"])}
           >
             <FaTasks size={24} className="mr-2" /> Users Management
           </Link>

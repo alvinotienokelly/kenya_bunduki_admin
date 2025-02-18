@@ -16,6 +16,7 @@ import Milestones from "./pages/milestones/Milestones";
 import ViewDeal from "./pages/deals/ViewDeal";
 import AdminDashboard from "./pages/dashboard/Dashboard";
 import BookingsManagement from "./pages/bookings/BookingsManagement";
+import UsersManagement from "./pages/users/UsersManagement";
 
 const AppRoutes = () => {
   return (
@@ -47,6 +48,15 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Admin Dashboard" />
             <AdminDashboard />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard/users-management"
+        element={
+          <>
+            <PageTitle title="Users Management" />
+            <UsersManagement />
           </>
         }
       />
