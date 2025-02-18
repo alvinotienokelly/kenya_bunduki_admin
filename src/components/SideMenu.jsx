@@ -19,7 +19,7 @@ const SideMenu = () => {
   const getLinkClasses = (paths) => {
     return paths.some((path) => location.pathname.startsWith(path))
       ? "flex items-center text-white bg-primary px-2 py-1.5 rounded text-[14px]"
-      : "flex items-center text-[14px] hover:bg-primary hover:text-white px-2 py-1.5 rounded dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700";
+      : "flex items-center text-white hover:bg-primary hover:text-white px-2 py-1.5 rounded dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700";
   };
 
   const logout = () => {
