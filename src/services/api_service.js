@@ -485,3 +485,38 @@ export const banUser = async (userId) => {
     throw error;
   }
 };
+export const fetchTimeSlots = async () => {
+  try {
+    const response = await api.get("/time-slots");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createTimeSlot = async (data) => {
+  try {
+    const response = await api.post("/time-slots", data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateTimeSlot = async (id, data) => {
+  try {
+    const response = await api.put(`/time-slots/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteTimeSlot = async (id) => {
+  try {
+    const response = await api.delete(`/time-slots/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

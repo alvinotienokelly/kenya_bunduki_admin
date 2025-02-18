@@ -17,6 +17,7 @@ import ViewDeal from "./pages/deals/ViewDeal";
 import AdminDashboard from "./pages/dashboard/Dashboard";
 import BookingsManagement from "./pages/bookings/BookingsManagement";
 import UsersManagement from "./pages/users/UsersManagement";
+import TimeSlotsManagement from "./pages/timeSlots/TimeSlotsManagement";
 
 const AppRoutes = () => {
   return (
@@ -39,6 +40,15 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Bookings Management" />
             <BookingsManagement />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard/time-slots-management"
+        element={
+          <>
+            <PageTitle title="Time Slots Management" />
+            <TimeSlotsManagement />
           </>
         }
       />

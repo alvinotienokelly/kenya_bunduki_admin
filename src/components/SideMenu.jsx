@@ -55,8 +55,8 @@ const SideMenu = () => {
             <FaTasks size={24} className="mr-2" /> Users Management
           </Link>
           <Link
-            to="/dashboard/milestones"
-            className={getLinkClasses(["/dashboard/milestones"])}
+            to="/dashboard/time-slots-management"
+            className={getLinkClasses(["/dashboard/time-slots-management"])}
           >
             <FaFlag size={24} className="mr-2" /> Time Slots Management
           </Link>
