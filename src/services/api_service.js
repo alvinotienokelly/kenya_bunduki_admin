@@ -520,3 +520,39 @@ export const deleteTimeSlot = async (id) => {
     throw error;
   }
 };
+
+export const fetchGunTypes = async () => {
+  try {
+    const response = await api.get("/gun-types");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createGunType = async (data) => {
+  try {
+    const response = await api.post("/gun-types", data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateGunType = async (id, data) => {
+  try {
+    const response = await api.put(`/gun-types/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteGunType = async (id) => {
+  try {
+    const response = await api.delete(`/gun-types/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

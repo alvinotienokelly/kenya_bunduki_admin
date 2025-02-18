@@ -18,6 +18,7 @@ import AdminDashboard from "./pages/dashboard/Dashboard";
 import BookingsManagement from "./pages/bookings/BookingsManagement";
 import UsersManagement from "./pages/users/UsersManagement";
 import TimeSlotsManagement from "./pages/timeSlots/TimeSlotsManagement";
+import GunTypesManagement from "./pages/gunTypes/GunTypesManagement";
 
 const AppRoutes = () => {
   return (
@@ -40,6 +41,15 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Bookings Management" />
             <BookingsManagement />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard/gun-types-management"
+        element={
+          <>
+            <PageTitle title="Gun Types Management" />
+            <GunTypesManagement />
           </>
         }
       />
