@@ -44,10 +44,8 @@ const SignIn = () => {
         />
       </div>
       <div className="w-full flex flex-col items-center justify-center h-full md:w-[40%] dark:border border-gray-600 rounded-md dark:p-4">
-        <img src={logo} className="h-[80px] mb-6" alt="Noble Capital Logo" />
-
         <p className="my-4 font-semibold text-[36px] text-black text-center dark:text-gray-300">
-          Log In
+          Kenya Bunduki
         </p>
         <form onSubmit={handleSubmit} className="space-y-4 w-full">
           <div>
@@ -109,15 +107,6 @@ const SignIn = () => {
               className="text-primary dark:text-gray-100 hover:underline font-medium"
             >
               Forgot Password
-            </Link>
-          </p>
-          <p className="mt-2 text-sm text-center text-gray-600 dark:text-gray-100">
-            Don't have an account?{" "}
-            <Link
-              to="/accounts/register"
-              className="ml-2 underline text-primary dark:text-gray-100 hover:underline font-medium"
-            >
-              Register
             </Link>
           </p>
         </div>

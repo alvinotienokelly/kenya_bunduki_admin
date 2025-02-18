@@ -231,7 +231,7 @@
 .loader::after {
   left: auto;
   right: 0;
-  background: #1A3664;
+  background: #cd2027;
   transform: translateX(10px);
 }
 
