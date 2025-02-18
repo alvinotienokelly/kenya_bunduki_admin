@@ -556,3 +556,31 @@ export const deleteGunType = async (id) => {
     throw error;
   }
 };
+export const fetchPayments = async () => {
+  try {
+    const response = await api.get("/payments");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const processRefund = async (paymentId) => {
+  try {
+    const response = await api.post(`/payments/${paymentId}/refund`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateBookingPrice = async (bookingId, newPrice) => {
+  try {
+    const response = await api.put(`/bookings/${bookingId}/price`, {
+      price: newPrice,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

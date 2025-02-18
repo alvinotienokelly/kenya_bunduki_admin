@@ -67,8 +67,8 @@ const SideMenu = () => {
             <FaFlag size={24} className="mr-2" /> Gun Types Management
           </Link>
           <Link
-            to="/dashboard/milestones"
-            className={getLinkClasses(["/dashboard/milestones"])}
+            to="/dashboard/payments-transactions"
+            className={getLinkClasses(["/dashboard/payments-transactions"])}
           >
             <FaFlag size={24} className="mr-2" /> Payments & Transactions
           </Link>

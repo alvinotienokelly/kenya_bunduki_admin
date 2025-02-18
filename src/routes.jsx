@@ -19,6 +19,7 @@ import BookingsManagement from "./pages/bookings/BookingsManagement";
 import UsersManagement from "./pages/users/UsersManagement";
 import TimeSlotsManagement from "./pages/timeSlots/TimeSlotsManagement";
 import GunTypesManagement from "./pages/gunTypes/GunTypesManagement";
+import PaymentsTransactions from "./pages/payments/PaymentsTransactions";
 
 const AppRoutes = () => {
   return (
@@ -32,6 +33,15 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Sign In" />
             <SignIn />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard/payments-transactions"
+        element={
+          <>
+            <PageTitle title="Payments & Transactions" />
+            <PaymentsTransactions />
           </>
         }
       />
