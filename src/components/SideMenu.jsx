@@ -29,16 +29,13 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="hidden md:flex flex-col bg-secondary text-primary dark:bg-gray-900 dark:text-gray-300 w-64 h-screen justify-between p-4">
+    <div className="hidden md:flex flex-col bg-black text-primary dark:bg-gray-900 dark:text-gray-300 w-64 h-screen justify-between p-4">
       <div className="flex flex-col">
         {/* <img src={logo} className="h-[80px] mb-6" alt="Noble Capital Logo" /> */}
         <div className="space-y-4 font-medium w-full">
           <Link
-            to="/dashboard/deals"
-            className={getLinkClasses([
-              "/dashboard/deals",
-              "/dashboard/deals/create-new",
-            ])}
+            to="/dashboard/admin"
+            className={getLinkClasses(["/dashboard/admin", "/dashboard/admin"])}
           >
             <FaRegHandshake size={24} className="mr-2" /> Dashboard
           </Link>
