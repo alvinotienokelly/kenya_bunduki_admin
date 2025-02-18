@@ -40,8 +40,8 @@ const SideMenu = () => {
             <FaRegHandshake size={24} className="mr-2" /> Dashboard
           </Link>
           <Link
-            to="/dashboard/my-deals"
-            className={getLinkClasses(["/dashboard/my-deals"])}
+            to="/dashboard/bookings-management"
+            className={getLinkClasses(["/dashboard/bookings-management"])}
           >
             <FaRegFileAlt size={24} className="mr-2" /> Bookings Management
           </Link>

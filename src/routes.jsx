@@ -15,6 +15,7 @@ import TaskList from "./pages/tasks/TaskList";
 import Milestones from "./pages/milestones/Milestones";
 import ViewDeal from "./pages/deals/ViewDeal";
 import AdminDashboard from "./pages/dashboard/Dashboard";
+import BookingsManagement from "./pages/bookings/BookingsManagement";
 
 const AppRoutes = () => {
   return (
@@ -28,6 +29,15 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Sign In" />
             <SignIn />
+          </>
+        }
+      />
+      <Route
+        path="/dashboard/bookings-management"
+        element={
+          <>
+            <PageTitle title="Bookings Management" />
+            <BookingsManagement />
           </>
         }
       />

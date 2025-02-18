@@ -404,3 +404,48 @@ export const getCountryPreferences = async () => {
     throw error;
   }
 };
+// Bookings services
+export const fetchBookings = async () => {
+  try {
+    const response = await api.get("/bookings");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const approveBooking = async (bookingId) => {
+  try {
+    const response = await api.post(`/bookings/${bookingId}/approve`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const rejectBooking = async (bookingId) => {
+  try {
+    const response = await api.post(`/bookings/${bookingId}/reject`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const modifyBooking = async (bookingId, newDetails) => {
+  try {
+    const response = await api.put(`/bookings/${bookingId}`, newDetails);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const cancelBooking = async (bookingId) => {
+  try {
+    const response = await api.delete(`/bookings/${bookingId}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
