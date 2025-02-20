@@ -584,3 +584,14 @@ export const updateBookingPrice = async (bookingId, newPrice) => {
     throw error;
   }
 };
+
+
+
+export const createBooking = async (paymentId) => {
+  try {
+    const response = await api.post(`/payments/${paymentId}/refund`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
