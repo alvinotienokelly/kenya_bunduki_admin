@@ -17,6 +17,7 @@ const TimeSlotsManagement = () => {
     startTime: "",
     endTime: "",
     isPeakHour: false,
+    date: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [currentSlotId, setCurrentSlotId] = useState(null);
@@ -46,16 +47,21 @@ const TimeSlotsManagement = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formDataToSend = {
+      ...formData,
+    };
+
     try {
       if (isEditing) {
-        await updateTimeSlot(currentSlotId, formData);
+        await updateTimeSlot(currentSlotId, formDataToSend);
         toast.success("Time slot updated successfully");
       } else {
-        await createTimeSlot(formData);
+        await createTimeSlot(formDataToSend);
         toast.success("Time slot created successfully");
       }
       setShowModal(false);
-      setFormData({ startTime: "", endTime: "", isPeakHour: false });
+      setFormData({ startTime: "", endTime: "", isPeakHour: false, date: "" });
       setIsEditing(false);
       setCurrentSlotId(null);
       const response = await fetchTimeSlots();
@@ -107,6 +113,9 @@ const TimeSlotsManagement = () => {
                 Peak Hour
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
+                Date
+              </th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">
                 Actions
               </th>
             </tr>
@@ -114,7 +123,7 @@ const TimeSlotsManagement = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
+                <td colSpan="5" className="text-center py-4">
                   Loading...
                 </td>
               </tr>
@@ -126,6 +135,7 @@ const TimeSlotsManagement = () => {
                   <td className="py-2 px-4">
                     {slot.isPeakHour ? "Yes" : "No"}
                   </td>
+                  <td className="py-2 px-4">{slot.date}</td>
                   <td className="py-2 px-4 flex gap-2">
                     <button
                       onClick={() => handleEditClick(slot)}
@@ -144,7 +154,7 @@ const TimeSlotsManagement = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-4">
+                <td colSpan="5" className="text-center py-4">
                   No time slots available
                 </td>
               </tr>
@@ -181,6 +191,19 @@ const TimeSlotsManagement = () => {
                   type="time"
                   name="endTime"
                   value={formData.endTime}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 dark:text-gray-400">
+                  Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
                   required
