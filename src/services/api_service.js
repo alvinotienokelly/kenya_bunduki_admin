@@ -195,6 +195,16 @@ export const deleteDealMilestone = async (id) => {
   }
 };
 
+export const deleteUser = async (id) => {
+  try {
+    const response = await api.delete(`/milestones/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 export const updateDealMilestone = async (id, data) => {
   try {
     const response = await api.put(`/milestones/${id}`, data);
@@ -204,6 +214,14 @@ export const updateDealMilestone = async (id, data) => {
   }
 };
 
+export const updateUser = async (id, data) => {
+  try {
+    const response = await api.put(`/milestones/${id}`, data);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 export const getmeetingByDealId = async (id) => {
   try {
     const response = await api.get(`/noble-teams/deal/${id}/meetings`);
@@ -588,6 +606,15 @@ export const updateBookingPrice = async (bookingId, newPrice) => {
 
 
 export const createBooking = async (paymentId) => {
+  try {
+    const response = await api.post(`/payments/${paymentId}/refund`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createUser = async (paymentId) => {
   try {
     const response = await api.post(`/payments/${paymentId}/refund`);
     return response.data;
