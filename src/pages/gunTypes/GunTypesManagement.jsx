@@ -17,6 +17,7 @@ const GunTypesManagement = () => {
     name: "",
     rentalPrice: "",
     restrictions: "",
+    image: null,
   });
   const [isEditing, setIsEditing] = useState(false);
   const [currentGunTypeId, setCurrentGunTypeId] = useState(null);
@@ -37,25 +38,30 @@ const GunTypesManagement = () => {
   }, []);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: files ? files[0] : value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDataToSend = new FormData();
+    Object.keys(formData).forEach((key) => {
+      formDataToSend.append(key, formData[key]);
+    });
+
     try {
       if (isEditing) {
-        await updateGunType(currentGunTypeId, formData);
+        await updateGunType(currentGunTypeId, formDataToSend);
         toast.success("Gun type updated successfully");
       } else {
-        await createGunType(formData);
+        await createGunType(formDataToSend);
         toast.success("Gun type created successfully");
       }
       setShowModal(false);
-      setFormData({ name: "", rentalPrice: "", restrictions: "" });
+      setFormData({ name: "", rentalPrice: "", restrictions: "", image: null });
       setIsEditing(false);
       setCurrentGunTypeId(null);
       const response = await fetchGunTypes();
@@ -97,28 +103,28 @@ const GunTypesManagement = () => {
         <table className="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
           <thead>
             <tr>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Image</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Rental Price
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Restrictions
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Actions
-              </th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Rental Price (per hour)</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Restrictions</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
+                <td colSpan="5" className="text-center py-4">
                   Loading...
                 </td>
               </tr>
             ) : gunTypes.length > 0 ? (
               gunTypes.map((gunType) => (
                 <tr key={gunType.id} className="border-b dark:border-gray-700">
+                  <td className="py-2 px-4">
+                    {gunType.image && (
+                      <img src={gunType.image} alt={gunType.name} className="h-16 w-16 object-cover rounded" />
+                    )}
+                  </td>
                   <td className="py-2 px-4">{gunType.name}</td>
                   <td className="py-2 px-4">{gunType.rentalPrice}</td>
                   <td className="py-2 px-4">{gunType.restrictions}</td>
@@ -140,7 +146,7 @@ const GunTypesManagement = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-4">
+                <td colSpan="5" className="text-center py-4">
                   No gun types available
                 </td>
               </tr>
@@ -151,7 +157,7 @@ const GunTypesManagement = () => {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
             <h2 className="text-lg font-semibold mb-4">
               {isEditing ? "Edit Gun Type" : "Add Gun Type"}
             </h2>
@@ -171,7 +177,7 @@ const GunTypesManagement = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-400">
-                  Rental Price
+                  Rental Price (per hour)
                 </label>
                 <input
                   type="number"
@@ -192,6 +198,18 @@ const GunTypesManagement = () => {
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
                   required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 dark:text-gray-400">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                  accept="image/*"
                 />
               </div>
               <div className="flex justify-end mt-4">

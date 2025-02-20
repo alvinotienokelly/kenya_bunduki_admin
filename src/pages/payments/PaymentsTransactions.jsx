@@ -15,6 +15,7 @@ const PaymentsTransactions = () => {
   const [formData, setFormData] = useState({
     bookingId: "",
     newPrice: "",
+    paymentType: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [currentPaymentId, setCurrentPaymentId] = useState(null);
@@ -71,7 +72,7 @@ const PaymentsTransactions = () => {
       await updateBookingPrice(currentPaymentId, formData.newPrice);
       toast.success("Booking price updated successfully");
       setShowModal(false);
-      setFormData({ bookingId: "", newPrice: "" });
+      setFormData({ bookingId: "", newPrice: "", paymentType: "" });
       setIsEditing(false);
       setCurrentPaymentId(null);
       const response = await fetchPayments();
@@ -84,32 +85,20 @@ const PaymentsTransactions = () => {
   return (
     <Layout title="Payments & Transactions">
       <div className="overflow-x-auto">
-        <table className="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
+        <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Payment ID
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Booking ID
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Amount
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Status
-              </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-                Actions
-              </th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Payment ID</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Booking ID</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Amount</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Status</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Payment Type</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="5" className="text-center py-4">
-                  Loading...
-                </td>
+                <td colSpan="5" className="text-center py-4">Loading...</td>
               </tr>
             ) : payments.length > 0 ? (
               payments.map((payment) => (
@@ -118,27 +107,16 @@ const PaymentsTransactions = () => {
                   <td className="py-2 px-4">{payment.bookingId}</td>
                   <td className="py-2 px-4">${payment.amount}</td>
                   <td className="py-2 px-4">{payment.status}</td>
-                  <td className="py-2 px-4 flex gap-2">
-                    <button
-                      onClick={() => handleRefund(payment.id)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <FaUndo />
-                    </button>
-                    <button
-                      onClick={() => handleEditClick(payment)}
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <FaEdit />
-                    </button>
+                  <td className="py-2 px-4">
+                    {/* {payment.paymentType === "mpesa" && <img src={mpesaLogo} alt="Mpesa" className="h-6" />}
+                    {payment.paymentType === "visa" && <img src={visaLogo} alt="Visa" className="h-6" />}
+                    {payment.paymentType === "mastercard" && <img src={mastercardLogo} alt="MasterCard" className="h-6" />} */}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center py-4">
-                  No payments available
-                </td>
+                <td colSpan="5" className="text-center py-4">No payments available</td>
               </tr>
             )}
           </tbody>
@@ -147,15 +125,13 @@ const PaymentsTransactions = () => {
 
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
             <h2 className="text-lg font-semibold mb-4">
               {isEditing ? "Edit Booking Price" : "Add Booking Price"}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Booking ID
-                </label>
+                <label className="block text-gray-700 dark:text-gray-400">Booking ID</label>
                 <input
                   type="text"
                   name="bookingId"
@@ -167,9 +143,7 @@ const PaymentsTransactions = () => {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  New Price
-                </label>
+                <label className="block text-gray-700 dark:text-gray-400">New Price</label>
                 <input
                   type="number"
                   name="newPrice"
