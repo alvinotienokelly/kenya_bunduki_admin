@@ -54,12 +54,7 @@ const SideMenu = () => {
           >
             <FaTasks size={24} className="mr-2" /> Users Management
           </Link>
-          <Link
-            to="/dashboard/time-slots-management"
-            className={getLinkClasses(["/dashboard/time-slots-management"])}
-          >
-            <FaFlag size={24} className="mr-2" /> Time Slots Management
-          </Link>
+          
           <Link
             to="/dashboard/gun-types-management"
             className={getLinkClasses(["/dashboard/gun-types-management"])}
@@ -72,18 +67,7 @@ const SideMenu = () => {
           >
             <FaFlag size={24} className="mr-2" /> Payments & Transactions
           </Link>
-          <Link
-            to="/dashboard/milestones"
-            className={getLinkClasses(["/dashboard/milestones"])}
-          >
-            <FaFlag size={24} className="mr-2" /> Reports & Analytics
-          </Link>
-          <Link
-            to="/dashboard/milestones"
-            className={getLinkClasses(["/dashboard/milestones"])}
-          >
-            <FaFlag size={24} className="mr-2" /> Notifications & Messaging
-          </Link>
+         
           {/* <Link
             to="/dashboard/target-companies"
             className={getLinkClasses(['/dashboard/target-companies'])}
