@@ -33,7 +33,7 @@ const BookingsManagement = () => {
     const getBookings = async () => {
       try {
         const response = await fetchBookings();
-        setBookings(response.bookings);
+        setBookings(response);
       } catch (error) {
         toast.error("Failed to fetch bookings");
       } finally {
@@ -53,7 +53,7 @@ const BookingsManagement = () => {
     const getGunTypes = async () => {
       try {
         const response = await fetchGunTypes();
-        setGunTypes(response.gunTypes);
+        setGunTypes(response);
       } catch (error) {
         toast.error("Failed to fetch gun types");
       }
@@ -88,7 +88,7 @@ const BookingsManagement = () => {
         gunType: "",
       });
       const response = await fetchBookings();
-      setBookings(response.bookings);
+      setBookings(response);
     } catch (error) {
       toast.error("Failed to add booking");
     }
