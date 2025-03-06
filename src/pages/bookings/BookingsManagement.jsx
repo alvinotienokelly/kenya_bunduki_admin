@@ -193,7 +193,7 @@ const BookingsManagement = () => {
             ) : bookings.length > 0 ? (
               bookings.map((booking) => (
                 <tr key={booking.id} className="border-b dark:border-gray-700">
-                  <td className="py-2 px-4">{booking.id}</td>
+                  <td className="py-2 px-4">{booking.booking_id}</td>
                   <td className="py-2 px-4">{booking.name}</td>
                   <td className="py-2 px-4">{booking.email}</td>
                   <td className="py-2 px-4">{booking.phone}</td>
@@ -203,24 +203,24 @@ const BookingsManagement = () => {
                   </td>
                   <td className="py-2 px-4">{booking.startTime}</td>
                   <td className="py-2 px-4">{booking.endTime}</td>
-                  <td className="py-2 px-4">{booking.gunType}</td>
+                  <td className="py-2 px-4">{booking.gunTypeName}</td>
                   <td className="py-2 px-4">{booking.status}</td>
                   <td className="py-2 px-4 flex gap-2">
                     <button
-                      onClick={() => handleApprove(booking.id)}
+                      onClick={() => handleApprove(booking.booking_id)}
                       className="text-green-500 hover:text-green-700"
                     >
                       <FaCheck />
                     </button>
                     <button
-                      onClick={() => handleReject(booking.id)}
+                      onClick={() => handleReject(booking.booking_id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTimes />
                     </button>
                     <button
                       onClick={() =>
-                        handleModify(booking.id, {
+                        handleModify(booking.booking_id, {
                           /* new details */
                         })
                       }
@@ -229,7 +229,7 @@ const BookingsManagement = () => {
                       <FaEdit />
                     </button>
                     <button
-                      onClick={() => handleCancel(booking.id)}
+                      onClick={() => handleCancel(booking.booking_id)}
                       className="text-gray-500 hover:text-gray-700"
                     >
                       <FaTrashAlt />
