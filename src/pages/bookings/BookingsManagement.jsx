@@ -90,7 +90,7 @@ const BookingsManagement = () => {
       toast.success("Booking approved successfully");
       setBookings(
         bookings.map((booking) =>
-          booking.id === bookingId
+          booking.booking_id === bookingId
             ? { ...booking, status: "Approved" }
             : booking
         )
@@ -106,7 +106,7 @@ const BookingsManagement = () => {
       toast.success("Booking rejected successfully");
       setBookings(
         bookings.map((booking) =>
-          booking.id === bookingId
+          booking.booking_id === bookingId
             ? { ...booking, status: "Rejected" }
             : booking
         )
@@ -122,7 +122,7 @@ const BookingsManagement = () => {
       toast.success("Booking modified successfully");
       setBookings(
         bookings.map((booking) =>
-          booking.id === bookingId ? { ...booking, ...newDetails } : booking
+          booking.booking_id === bookingId ? { ...booking, ...newDetails } : booking
         )
       );
     } catch (error) {
@@ -134,7 +134,7 @@ const BookingsManagement = () => {
     try {
       await cancelBooking(bookingId);
       toast.success("Booking cancelled successfully");
-      setBookings(bookings.filter((booking) => booking.id !== bookingId));
+      setBookings(bookings.filter((booking) => booking.booking_id !== bookingId));
     } catch (error) {
       toast.error("Failed to cancel booking");
     }
@@ -192,7 +192,7 @@ const BookingsManagement = () => {
               </tr>
             ) : bookings.length > 0 ? (
               bookings.map((booking) => (
-                <tr key={booking.id} className="border-b dark:border-gray-700">
+                <tr key={booking.booking_id} className="border-b dark:border-gray-700">
                   <td className="py-2 px-4">{booking.booking_id}</td>
                   <td className="py-2 px-4">{booking.name}</td>
                   <td className="py-2 px-4">{booking.email}</td>
