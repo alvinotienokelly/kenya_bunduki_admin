@@ -26,7 +26,7 @@ const GunTypesManagement = () => {
     const getGunTypes = async () => {
       try {
         const response = await fetchGunTypes();
-        setGunTypes(response.gunTypes);
+        setGunTypes(response);
       } catch (error) {
         toast.error("Failed to fetch gun types");
       } finally {
@@ -65,7 +65,7 @@ const GunTypesManagement = () => {
       setIsEditing(false);
       setCurrentGunTypeId(null);
       const response = await fetchGunTypes();
-      setGunTypes(response.gunTypes);
+      setGunTypes(response);
     } catch (error) {
       toast.error("Failed to save gun type");
     }
@@ -73,7 +73,7 @@ const GunTypesManagement = () => {
 
   const handleEditClick = (gunType) => {
     setFormData(gunType);
-    setCurrentGunTypeId(gunType.id);
+    setCurrentGunTypeId(gunType.gunType_id);
     setIsEditing(true);
     setShowModal(true);
   };
@@ -117,9 +117,9 @@ const GunTypesManagement = () => {
                   Loading...
                 </td>
               </tr>
-            ) : gunTypes.length > 0 ? (
+            ) :  gunTypes.length > 0 ? (
               gunTypes.map((gunType) => (
-                <tr key={gunType.id} className="border-b dark:border-gray-700">
+                <tr key={gunType.gunType_id} className="border-b dark:border-gray-700">
                   <td className="py-2 px-4">
                     {gunType.image && (
                       <img src={gunType.image} alt={gunType.name} className="h-16 w-16 object-cover rounded" />
@@ -136,7 +136,7 @@ const GunTypesManagement = () => {
                       <FaEdit />
                     </button>
                     <button
-                      onClick={() => handleDeleteClick(gunType.id)}
+                      onClick={() => handleDeleteClick(gunType.gunType_id)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTrashAlt />
