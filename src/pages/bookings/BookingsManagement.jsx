@@ -7,7 +7,6 @@ import {
   modifyBooking,
   cancelBooking,
   createBooking,
-  fetchTimeSlots,
   fetchGunTypes,
 } from "../../services/api_service";
 import { FaCheck, FaTimes, FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
@@ -17,7 +16,6 @@ const BookingsManagement = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [timeSlots, setTimeSlots] = useState([]);
   const [gunTypes, setGunTypes] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -25,7 +23,8 @@ const BookingsManagement = () => {
     phone: "",
     numberOfPeople: "",
     bookingDate: "",
-    timeSlot: "",
+    startTime: "",
+    endTime: "",
     gunType: "",
   });
 
@@ -41,15 +40,6 @@ const BookingsManagement = () => {
       }
     };
 
-    const getTimeSlots = async () => {
-      try {
-        const response = await fetchTimeSlots();
-        setTimeSlots(response.timeSlots);
-      } catch (error) {
-        toast.error("Failed to fetch time slots");
-      }
-    };
-
     const getGunTypes = async () => {
       try {
         const response = await fetchGunTypes();
@@ -60,7 +50,6 @@ const BookingsManagement = () => {
     };
 
     getBookings();
-    getTimeSlots();
     getGunTypes();
   }, []);
 
@@ -84,7 +73,8 @@ const BookingsManagement = () => {
         phone: "",
         numberOfPeople: "",
         bookingDate: "",
-        timeSlot: "",
+        startTime: "",
+        endTime: "",
         gunType: "",
       });
       const response = await fetchBookings();
@@ -177,7 +167,10 @@ const BookingsManagement = () => {
                 Booking Date
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
-                Time Slot
+                Start Time
+              </th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">
+                End Time
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Gun Type
@@ -193,7 +186,7 @@ const BookingsManagement = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="10" className="text-center py-4">
+                <td colSpan="11" className="text-center py-4">
                   Loading...
                 </td>
               </tr>
@@ -208,7 +201,8 @@ const BookingsManagement = () => {
                   <td className="py-2 px-4">
                     {new Date(booking.bookingDate).toLocaleDateString()}
                   </td>
-                  <td className="py-2 px-4">{booking.timeSlot}</td>
+                  <td className="py-2 px-4">{booking.startTime}</td>
+                  <td className="py-2 px-4">{booking.endTime}</td>
                   <td className="py-2 px-4">{booking.gunType}</td>
                   <td className="py-2 px-4">{booking.status}</td>
                   <td className="py-2 px-4 flex gap-2">
@@ -245,7 +239,7 @@ const BookingsManagement = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="10" className="text-center py-4">
+                <td colSpan="11" className="text-center py-4">
                   No bookings available
                 </td>
               </tr>
@@ -326,22 +320,29 @@ const BookingsManagement = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-400">
-                  Time Slot
+                  Start Time
                 </label>
-                <select
-                  name="timeSlot"
-                  value={formData.timeSlot}
+                <input
+                  type="time"
+                  name="startTime"
+                  value={formData.startTime}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
                   required
-                >
-                  <option value="">Select Time Slot</option>
-                  {timeSlots.map((slot) => (
-                    <option key={slot.id} value={slot.id}>
-                      {slot.startTime} - {slot.endTime}
-                    </option>
-                  ))}
-                </select>
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 dark:text-gray-400">
+                  End Time
+                </label>
+                <input
+                  type="time"
+                  name="endTime"
+                  value={formData.endTime}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                  required
+                />
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-400">

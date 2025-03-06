@@ -605,9 +605,9 @@ export const updateBookingPrice = async (bookingId, newPrice) => {
 
 
 
-export const createBooking = async (paymentId) => {
+export const createBooking = async (bookingdata) => {
   try {
-    const response = await api.post(`/payments/${paymentId}/refund`);
+    const response = await api.post(`/booking`, bookingdata);
     return response.data;
   } catch (error) {
     throw error;
