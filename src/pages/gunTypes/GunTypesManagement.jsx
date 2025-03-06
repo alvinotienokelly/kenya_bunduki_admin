@@ -83,7 +83,7 @@ const GunTypesManagement = () => {
       await deleteGunType(gunTypeId);
       toast.success("Gun type deleted successfully");
       const response = await fetchGunTypes();
-      setGunTypes(response.gunTypes);
+      setGunTypes(response);
     } catch (error) {
       toast.error("Failed to delete gun type");
     }
