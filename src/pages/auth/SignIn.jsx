@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { loginUser } from "../../services/api_service";
-import img from "../../assets/noble_login.png";
+import img from "../../assets/hero-bg.jpg";
 import logo from "../../assets/noble_capital_logo.svg";
 
 const SignIn = () => {

@@ -24,7 +24,8 @@ const PaymentsTransactions = () => {
     const getPayments = async () => {
       try {
         const response = await fetchPayments();
-        setPayments(response.payments);
+        console.log(JSON.stringify(response));
+        setPayments(response);
       } catch (error) {
         toast.error("Failed to fetch payments");
       } finally {
@@ -89,10 +90,15 @@ const PaymentsTransactions = () => {
           <thead>
             <tr>
               <th className="py-2 px-4 border-b dark:border-gray-700">Payment ID</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Phone</th>
+
               <th className="py-2 px-4 border-b dark:border-gray-700">Booking ID</th>
+
               <th className="py-2 px-4 border-b dark:border-gray-700">Amount</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Status</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Payment Type</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -103,10 +109,16 @@ const PaymentsTransactions = () => {
             ) : payments.length > 0 ? (
               payments.map((payment) => (
                 <tr key={payment.id} className="border-b dark:border-gray-700">
-                  <td className="py-2 px-4">{payment.id}</td>
+                  <td className="py-2 px-4">{payment.payment_id}</td>
+                  <td className="py-2 px-4">{payment.Booking.name}</td>
+                  <td className="py-2 px-4">{payment.Booking.phone}</td>
+
                   <td className="py-2 px-4">{payment.bookingId}</td>
                   <td className="py-2 px-4">${payment.amount}</td>
-                  <td className="py-2 px-4">{payment.status}</td>
+                  <td className="py-2 px-4">{payment.paymentStatus}</td>
+                  <td className="py-2 px-4">{payment.paymentMethod}</td>
+                  <td className="py-2 px-4">{new Date(payment.createdAt).toLocaleString()}</td>
+
                   <td className="py-2 px-4">
                     {/* {payment.paymentType === "mpesa" && <img src={mpesaLogo} alt="Mpesa" className="h-6" />}
                     {payment.paymentType === "visa" && <img src={visaLogo} alt="Visa" className="h-6" />}
