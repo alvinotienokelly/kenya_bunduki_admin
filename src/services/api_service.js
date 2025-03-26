@@ -625,3 +625,46 @@ export const createUser = async (paymentId) => {
   }
 };
 
+export const fetchShootingLines = async () => {
+  try {
+    const response = await api.get("/shootinglines");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createShootingLine = async (data) => {
+  try {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+    const response = await api.post("/shootinglines", formData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateShootingLine = async (id, data) => {
+  try {
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+    const response = await api.put(`/shootinglines/${id}`, formData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteShootingLine = async (id) => {
+  try {
+    const response = await api.delete(`/shootinglines/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

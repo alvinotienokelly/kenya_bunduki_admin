@@ -20,6 +20,7 @@ import UsersManagement from "./pages/users/UsersManagement";
 import TimeSlotsManagement from "./pages/timeSlots/TimeSlotsManagement";
 import GunTypesManagement from "./pages/gunTypes/GunTypesManagement";
 import PaymentsTransactions from "./pages/payments/PaymentsTransactions";
+import ShootingLineManagement from "./pages/shootingLines/ShootingLineManagement";
 
 const AppRoutes = () => {
   return (
@@ -51,6 +52,16 @@ const AppRoutes = () => {
           <>
             <PageTitle title="Bookings Management" />
             <BookingsManagement />
+          </>
+        }
+      />
+
+      <Route
+        path="/dashboard/shooting-line-management"
+        element={
+          <>
+            <PageTitle title="Shooting Line Management" />
+            <ShootingLineManagement />
           </>
         }
       />
