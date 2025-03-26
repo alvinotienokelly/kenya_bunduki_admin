@@ -194,7 +194,7 @@ const BookingsManagement = () => {
                 Start Time
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
-                End Time
+               Line
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Gun Type
@@ -230,8 +230,10 @@ const BookingsManagement = () => {
                   <td className="py-2 px-4">
                     {new Date(booking.bookingDate).toLocaleDateString()}
                   </td>
-                  <td className="py-2 px-4">{booking.startTime}</td>
-                  <td className="py-2 px-4">{booking.endTime}</td>
+                  <td className="py-2 px-4">
+                    {booking.startTime} - {booking.endTime}
+                  </td>
+                  <td className="py-2 px-4">{booking.ShootingLine?.name ?? ""}</td>
                   <td className="py-2 px-4">{booking.gunTypeName}</td>
                   <td className="py-2 px-4">{booking.status}</td>
                   <td className="py-2 px-4 flex gap-2">
