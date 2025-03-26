@@ -8,12 +8,14 @@ import {
   cancelBooking,
   createBooking,
   fetchGunTypes,
+  fetchShootingLines,
 } from "../../services/api_service";
 import { FaCheck, FaTimes, FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const BookingsManagement = () => {
   const [bookings, setBookings] = useState([]);
+  const [lines, setLines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [gunTypes, setGunTypes] = useState([]);
@@ -28,6 +30,7 @@ const BookingsManagement = () => {
     endTime: "",
     timeSlot: "1am-3am",
     gunType: "",
+    lane: "",
   });
 
   useEffect(() => {
@@ -35,6 +38,17 @@ const BookingsManagement = () => {
       try {
         const response = await fetchBookings();
         setBookings(response);
+      } catch (error) {
+        toast.error("Failed to fetch bookings");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const getShootingLines = async () => {
+      try {
+        const response = await fetchShootingLines();
+        setLines(response);
       } catch (error) {
         toast.error("Failed to fetch bookings");
       } finally {
@@ -52,6 +66,7 @@ const BookingsManagement = () => {
     };
 
     getBookings();
+    getShootingLines();
     getGunTypes();
   }, []);
 
@@ -78,6 +93,7 @@ const BookingsManagement = () => {
         startTime: "",
         endTime: "",
         gunType: "",
+        lane: "",
       });
       const response = await fetchBookings();
       setBookings(response);
@@ -392,16 +408,19 @@ const BookingsManagement = () => {
                     Lane
                   </label>
                   <select
-                    name="gunType"
-                    value={formData.gunType}
+                    name="lane"
+                    value={formData.lane}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
                     required
                   >
                     <option value="">Select Lane</option>
-                    {gunTypes.map((gun) => (
-                      <option key={gun.id} value={gun.id}>
-                        {gun.name}
+                    {lines.map((line) => (
+                      <option
+                        key={line.shootingLine_id}
+                        value={line.shootingLine_id}
+                      >
+                        {line.name}
                       </option>
                     ))}
                   </select>
