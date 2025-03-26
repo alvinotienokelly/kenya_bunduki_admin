@@ -433,7 +433,7 @@ export const fetchBookings = async () => {
 
 export const approveBooking = async (bookingId) => {
   try {
-    const response = await api.post(`/bookings/${bookingId}/confirm`);
+    const response = await api.put(`/bookings/${bookingId}/confirm`);
     return response.data;
   } catch (error) {
     throw error;
@@ -442,7 +442,7 @@ export const approveBooking = async (bookingId) => {
 
 export const rejectBooking = async (bookingId) => {
   try {
-    const response = await api.post(`/bookings/${bookingId}/cancel`);
+    const response = await api.put(`/bookings/${bookingId}/cancel`);
     return response.data;
   } catch (error) {
     throw error;
@@ -604,9 +604,14 @@ export const updateBookingPrice = async (bookingId, newPrice) => {
 
 export const createBooking = async (bookingdata) => {
   try {
+    console.log("The response is", JSON.stringify(bookingdata));
+
     const response = await api.post(`/bookings`, bookingdata);
+    console.log("The response is", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
+    console.log("The response is", JSON.stringify(error));
+
     throw error;
   }
 };

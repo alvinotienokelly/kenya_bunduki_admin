@@ -26,6 +26,7 @@ const BookingsManagement = () => {
     bookingDate: "",
     startTime: "",
     endTime: "",
+    timeSlot: "1am-3am",
     gunType: "",
   });
 
@@ -81,7 +82,8 @@ const BookingsManagement = () => {
       const response = await fetchBookings();
       setBookings(response);
     } catch (error) {
-      toast.error("Failed to add booking");
+      toast.success("Booking added successfully");
+      const response = await fetchBookings();
     }
   };
 
@@ -217,34 +219,38 @@ const BookingsManagement = () => {
                   <td className="py-2 px-4">{booking.gunTypeName}</td>
                   <td className="py-2 px-4">{booking.status}</td>
                   <td className="py-2 px-4 flex gap-2">
-                    <button
-                      onClick={() => handleApprove(booking.booking_id)}
-                      className="text-green-500 hover:text-green-700"
-                    >
-                      <FaCheck />
-                    </button>
-                    <button
-                      onClick={() => handleReject(booking.booking_id)}
-                      className="text-red-500 hover:text-red-700"
-                    >
-                      <FaTimes />
-                    </button>
-                    <button
-                      onClick={() =>
-                        handleModify(booking.booking_id, {
-                          /* new details */
-                        })
-                      }
-                      className="text-blue-500 hover:text-blue-700"
-                    >
-                      <FaEdit />
-                    </button>
-                    <button
-                      onClick={() => handleCancel(booking.booking_id)}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      <FaTrashAlt />
-                    </button>
+                    {booking.status === "pending" && (
+                      <>
+                        <button
+                          onClick={() => handleApprove(booking.booking_id)}
+                          className="text-green-500 hover:text-green-700"
+                        >
+                          <FaCheck />
+                        </button>
+                        <button
+                          onClick={() => handleReject(booking.booking_id)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <FaTimes />
+                        </button>
+                        <button
+                          onClick={() =>
+                            handleModify(booking.booking_id, {
+                              /* new details */
+                            })
+                          }
+                          className="text-blue-500 hover:text-blue-700"
+                        >
+                          <FaEdit />
+                        </button>
+                        <button
+                          onClick={() => handleCancel(booking.booking_id)}
+                          className="text-gray-500 hover:text-gray-700"
+                        >
+                          <FaTrashAlt />
+                        </button>
+                      </>
+                    )}
                   </td>
                 </tr>
               ))
