@@ -19,6 +19,7 @@ const BookingsManagement = () => {
   const [gunTypes, setGunTypes] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
+    lastName: "",
     email: "",
     phone: "",
     numberOfPeople: "",
@@ -122,7 +123,9 @@ const BookingsManagement = () => {
       toast.success("Booking modified successfully");
       setBookings(
         bookings.map((booking) =>
-          booking.booking_id === bookingId ? { ...booking, ...newDetails } : booking
+          booking.booking_id === bookingId
+            ? { ...booking, ...newDetails }
+            : booking
         )
       );
     } catch (error) {
@@ -134,7 +137,9 @@ const BookingsManagement = () => {
     try {
       await cancelBooking(bookingId);
       toast.success("Booking cancelled successfully");
-      setBookings(bookings.filter((booking) => booking.booking_id !== bookingId));
+      setBookings(
+        bookings.filter((booking) => booking.booking_id !== bookingId)
+      );
     } catch (error) {
       toast.error("Failed to cancel booking");
     }
@@ -158,8 +163,9 @@ const BookingsManagement = () => {
                 Booking ID
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">Email</th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">Phone</th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">
+                Email & Phone
+              </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Number of People
               </th>
@@ -186,17 +192,22 @@ const BookingsManagement = () => {
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan="11" className="text-center py-4">
+                <td colSpan="10" className="text-center py-4">
                   Loading...
                 </td>
               </tr>
             ) : bookings.length > 0 ? (
               bookings.map((booking) => (
-                <tr key={booking.booking_id} className="border-b dark:border-gray-700">
+                <tr
+                  key={booking.booking_id}
+                  className="border-b dark:border-gray-700"
+                >
                   <td className="py-2 px-4">{booking.booking_id}</td>
                   <td className="py-2 px-4">{booking.name}</td>
-                  <td className="py-2 px-4">{booking.email}</td>
-                  <td className="py-2 px-4">{booking.phone}</td>
+                  <td className="py-2 px-4">
+                    <div>{booking.email}</div>
+                    <div>{booking.phone}</div>
+                  </td>
                   <td className="py-2 px-4">{booking.numberOfPeople}</td>
                   <td className="py-2 px-4">
                     {new Date(booking.bookingDate).toLocaleDateString()}
@@ -239,7 +250,7 @@ const BookingsManagement = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="11" className="text-center py-4">
+                <td colSpan="10" className="text-center py-4">
                   No bookings available
                 </td>
               </tr>
@@ -253,115 +264,161 @@ const BookingsManagement = () => {
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
             <h2 className="text-lg font-semibold mb-4">Add Booking</h2>
             <form onSubmit={handleAddBooking} className="space-y-4">
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
+
+              <div className="col-span-2">
+                <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-2">
+                  Reservation Details
+                </h3>
               </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Number of People
-                </label>
-                <input
-                  type="number"
-                  name="numberOfPeople"
-                  value={formData.numberOfPeople}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Booking Date
+                  </label>
+                  <input
+                    type="date"
+                    name="bookingDate"
+                    value={formData.bookingDate}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Start Time
+                  </label>
+                  <input
+                    type="time"
+                    name="startTime"
+                    value={formData.startTime}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    End Time
+                  </label>
+                  <input
+                    type="time"
+                    name="endTime"
+                    value={formData.endTime}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Booking Date
-                </label>
-                <input
-                  type="date"
-                  name="bookingDate"
-                  value={formData.bookingDate}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Start Time
-                </label>
-                <input
-                  type="time"
-                  name="startTime"
-                  value={formData.startTime}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  End Time
-                </label>
-                <input
-                  type="time"
-                  name="endTime"
-                  value={formData.endTime}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-400">
-                  Gun Type
-                </label>
-                <select
-                  name="gunType"
-                  value={formData.gunType}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
-                  required
-                >
-                  <option value="">Select Gun Type</option>
-                  {gunTypes.map((gun) => (
-                    <option key={gun.id} value={gun.id}>
-                      {gun.name}
-                    </option>
-                  ))}
-                </select>
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Number of People
+                  </label>
+                  <input
+                    type="number"
+                    name="numberOfPeople"
+                    value={formData.numberOfPeople}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Lane
+                  </label>
+                  <select
+                    name="gunType"
+                    value={formData.gunType}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  >
+                    <option value="">Select Lane</option>
+                    {gunTypes.map((gun) => (
+                      <option key={gun.id} value={gun.id}>
+                        {gun.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-gray-700 dark:text-gray-400">
+                    Gun Type
+                  </label>
+                  <select
+                    name="gunType"
+                    value={formData.gunType}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border rounded-md dark:border-gray-600 focus:outline-none focus:border-primary text-primary dark:bg-gray-700 dark:text-white"
+                    required
+                  >
+                    <option value="">Select Gun Type</option>
+                    {gunTypes.map((gun) => (
+                      <option key={gun.id} value={gun.id}>
+                        {gun.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div className="flex justify-end mt-4">
                 <button
