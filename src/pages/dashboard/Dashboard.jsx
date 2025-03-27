@@ -44,7 +44,7 @@ const Dashboard = () => {
       //   </div>
       // }
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center">
           <FaCalendarCheck className="text-primary dark:text-white text-3xl mr-4" />
           <div>
@@ -57,7 +57,16 @@ const Dashboard = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center">
           <FaChartLine className="text-primary dark:text-white text-3xl mr-4" />
           <div>
-            <p className="text-gray-600 dark:text-gray-400">Available Slots</p>
+            <p className="text-gray-600 dark:text-gray-400">Guns</p>
+            <p className="text-2xl font-semibold text-gray-800 dark:text-white">
+              {stats.availableSlots}
+            </p>
+          </div>
+        </div>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center">
+          <FaChartLine className="text-primary dark:text-white text-3xl mr-4" />
+          <div>
+            <p className="text-gray-600 dark:text-gray-400">Guns Types</p>
             <p className="text-2xl font-semibold text-gray-800 dark:text-white">
               {stats.availableSlots}
             </p>
@@ -75,7 +84,7 @@ const Dashboard = () => {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center">
           <FaUsers className="text-primary dark:text-white text-3xl mr-4" />
           <div>
-            <p className="text-gray-600 dark:text-gray-400">Total Users</p>
+            <p className="text-gray-600 dark:text-gray-400">Total Customers</p>
             <p className="text-2xl font-semibold text-gray-800 dark:text-white">
               {stats.totalUsers}
             </p>

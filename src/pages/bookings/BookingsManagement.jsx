@@ -205,9 +205,10 @@ const BookingsManagement = () => {
         <table className="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
           <thead>
             <tr>
+            <th className="py-2 px-4 border-b dark:border-gray-700">Phone</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
-                Email & Phone
+                Email
               </th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Number of People
@@ -243,10 +244,10 @@ const BookingsManagement = () => {
                   key={booking.booking_id}
                   className="border-b dark:border-gray-700"
                 >
+                  <td className="py-2 px-4">{booking.phone}</td>
                   <td className="py-2 px-4">{booking.name}</td>
                   <td className="py-2 px-4">
                     <div>{booking.email}</div>
-                    <div>{booking.phone}</div>
                   </td>
                   <td className="py-2 px-4">{booking.numberOfPeople}</td>
                   <td className="py-2 px-4">
