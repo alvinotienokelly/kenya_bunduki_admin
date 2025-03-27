@@ -60,7 +60,7 @@ const AppRoutes = () => {
         path="/dashboard/shooting-line-management"
         element={
           <>
-            <PageTitle title="Shooting Line Management" />
+            <PageTitle title="Shooting Lane Management" />
             <ShootingLineManagement />
           </>
         }

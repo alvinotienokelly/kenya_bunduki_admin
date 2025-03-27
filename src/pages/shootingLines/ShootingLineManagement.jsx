@@ -31,7 +31,7 @@ const ShootingLineManagement = () => {
         const response = await fetchShootingLines();
         setShootingLines(response);
       } catch (error) {
-        toast.error("Failed to fetch shooting lines");
+        toast.error("Failed to fetch shooting Lane");
       } finally {
         setLoading(false);
       }
@@ -53,10 +53,10 @@ const ShootingLineManagement = () => {
     try {
       if (isEditing) {
         await updateShootingLine(currentShootingLineId, formData);
-        toast.success("Shooting line updated successfully");
+        toast.success("Shooting Lane updated successfully");
       } else {
         await createShootingLine(formData);
-        toast.success("Shooting line created successfully");
+        toast.success("Shooting Lane created successfully");
       }
       setShowModal(false);
       setFormData({
@@ -73,7 +73,7 @@ const ShootingLineManagement = () => {
       const response = await fetchShootingLines();
       setShootingLines(response);
     } catch (error) {
-      toast.error("Failed to save shooting line");
+      toast.error("Failed to save shooting Lane");
     }
   };
 
@@ -87,11 +87,11 @@ const ShootingLineManagement = () => {
   const handleDeleteClick = async (id) => {
     try {
       await deleteShootingLine(id);
-      toast.success("Shooting line deleted successfully");
+      toast.success("Shooting Lane deleted successfully");
       const response = await fetchShootingLines();
       setShootingLines(response);
     } catch (error) {
-      toast.error("Failed to delete shooting line");
+      toast.error("Failed to delete shooting Lane");
     }
   };
 

@@ -203,22 +203,22 @@ const SideMenu = () => {
           >
             <svg
               width="24"
-              className="mr-2"
               height="24"
+              className="mr-2"
               viewBox="0 0 24 24"
-              style={{ marginRight: "8px" }}
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+                d="M12 12H21M12 18H21M12 6L21 6M3 16.1047L4.89736 18C5.80992 16.4043 7.07282 15.0366 8.59087 14M4 10H7C7.55228 10 8 9.55228 8 9V6C8 5.44772 7.55228 5 7 5H4C3.44772 5 3 5.44772 3 6V9C3 9.55228 3.44772 10 4 10Z"
                 stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                stroke-opacity="0.84"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               />
             </svg>
-            Shooting Line Management
+            Shooting Lane
           </Link>
           <Link
             to="/dashboard/payments-transactions"
