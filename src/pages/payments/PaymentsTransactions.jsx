@@ -89,7 +89,6 @@ const PaymentsTransactions = () => {
         <table className="min-w-full bg-white dark:bg-gray-800">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b dark:border-gray-700">Payment ID</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">Phone</th>
 
@@ -109,7 +108,6 @@ const PaymentsTransactions = () => {
             ) : payments.length > 0 ? (
               payments.map((payment) => (
                 <tr key={payment.id} className="border-b dark:border-gray-700">
-                  <td className="py-2 px-4">{payment.payment_id}</td>
                   <td className="py-2 px-4">{payment.Booking.name}</td>
                   <td className="py-2 px-4">{payment.Booking.phone}</td>
 

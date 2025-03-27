@@ -101,11 +101,53 @@ const SideMenu = () => {
                 stroke-linejoin="round"
               />
             </svg>
-            Bookings Management
+            Bookings
           </Link>
-          {/* <Link to="/dashboard/transactions" className={getLinkClasses(['/dashboard/transactions'])}>
-            <FaFileInvoice size={24} className="mr-2" /> Transactions
-          </Link> */}
+          <Link to="#" className={getLinkClasses(["#"])}>
+            <svg
+              width="24"
+              height="25"
+              className="mr-2"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 7.5C16 9.70914 14.2091 11.5 12 11.5C9.79086 11.5 8 9.70914 8 7.5C8 5.29086 9.79086 3.5 12 3.5C14.2091 3.5 16 5.29086 16 7.5Z"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M5.86595 21.5H18.1341C19.1646 21.5 20 20.6646 20 19.6341C20 16.5501 17.0608 14.3148 14.0889 15.1387L13.393 15.3317C12.4815 15.5843 11.5185 15.5843 10.607 15.3317L9.91111 15.1387C6.9392 14.3148 4 16.5501 4 19.6341C4 20.6646 4.83541 21.5 5.86595 21.5Z"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>{" "}
+            Customers
+          </Link>
+          <Link to="#" className={getLinkClasses(["#"])}>
+            <svg
+              width="24"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+              className="mr-2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.9995 8.5V13.3164C11.9995 13.4874 12.0869 13.6465 12.2311 13.7383L14.9995 15.5M21.1496 12.5001C21.1496 17.5535 17.053 21.6501 11.9996 21.6501C6.9462 21.6501 2.84961 17.5535 2.84961 12.5001C2.84961 7.44669 6.9462 3.3501 11.9996 3.3501C17.053 3.3501 21.1496 7.44669 21.1496 12.5001Z"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>{" "}
+            Time Slots
+          </Link>
 
           <Link
             to="/dashboard/gun-types-management"
@@ -114,6 +156,7 @@ const SideMenu = () => {
             <svg
               width="24"
               height="24"
+              className="mr-2"
               viewBox="0 0 24 24"
               style={{ marginRight: "8px" }}
               fill="none"
@@ -128,7 +171,31 @@ const SideMenu = () => {
                 stroke-linejoin="round"
               />
             </svg>
-            Gun Types Management
+            Gun Types
+          </Link>
+          <Link
+            to="/dashboard/gun-types-management"
+            className={getLinkClasses(["/dashboard/gun-types-management"])}
+          >
+            <svg
+              width="24"
+              height="24"
+              className="mr-2"
+              viewBox="0 0 24 24"
+              style={{ marginRight: "8px" }}
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 12H10M4 18H10M4 6H20M21 18.5L19.6214 17.1214M19.6214 17.1214C20.1657 16.5771 20.5 15.8271 20.5 15C20.5 13.3414 19.1586 12 17.5 12C15.8414 12 14.5 13.3414 14.5 15C14.5 16.6586 15.8414 18 17.5 18C18.3272 18 19.0771 17.6657 19.6214 17.1214Z"
+                stroke="white"
+                stroke-opacity="0.84"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Guns
           </Link>
           <Link
             to="/dashboard/shooting-line-management"
@@ -136,6 +203,7 @@ const SideMenu = () => {
           >
             <svg
               width="24"
+              className="mr-2"
               height="24"
               viewBox="0 0 24 24"
               style={{ marginRight: "8px" }}
@@ -158,22 +226,41 @@ const SideMenu = () => {
           >
             <svg
               width="24"
-              style={{ marginRight: "8px" }}
-              height="24"
-              viewBox="0 0 24 24"
+              className="mr-2"
+              height="25"
+              viewBox="0 0 24 25"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M12.0004 10.303V11.1322M12.0004 11.1322H11.2326C10.3846 11.1322 9.69713 11.8746 9.69713 12.7905C9.69713 13.7064 10.3846 14.4488 11.2326 14.4488L12.7681 14.4488C13.6162 14.4488 14.3036 15.1913 14.3036 16.1072C14.3036 17.0231 13.6162 17.7655 12.7681 17.7655H12.0004M12.0004 11.1322H12.8165C13.3443 11.1322 13.8098 11.4197 14.0862 11.8577M12.0004 17.7655V18.5947M12.0004 17.7655H11.1843C10.6565 17.7655 10.1909 17.478 9.91453 17.04M14.8871 6.98758C14.3011 6.79509 13.6824 6.69011 13.0368 6.69011H10.9639C10.642 6.69011 10.3267 6.71622 10.0189 6.76626M14.8871 6.98758C21.0721 9.01901 23.622 20.7963 15.8092 21.7648C13.2797 22.0784 10.7211 22.0784 8.19153 21.7648C0.00759697 20.7503 3.19433 7.87572 10.0189 6.76626M14.8871 6.98758L16.6644 2.54428L16.0145 2.28428C14.7993 1.79821 13.4227 1.94155 12.3337 2.66753C11.4567 3.25225 10.3832 3.4646 9.34961 3.25787L8.37278 3.06251L10.0189 6.76626"
+                d="M2 9.5H22M6 13.5H9M15.6 20.5H8.4C6.15979 20.5 5.03969 20.5 4.18404 20.064C3.43139 19.6805 2.81947 19.0686 2.43597 18.316C2 17.4603 2 16.3402 2 14.1V10.9C2 8.65979 2 7.53968 2.43597 6.68404C2.81947 5.93139 3.43139 5.31947 4.18404 4.93597C5.03969 4.5 6.15979 4.5 8.4 4.5H15.6C17.8402 4.5 18.9603 4.5 19.816 4.93597C20.5686 5.31947 21.1805 5.93139 21.564 6.68404C22 7.53968 22 8.65979 22 10.9V14.1C22 16.3402 22 17.4603 21.564 18.316C21.1805 19.0686 20.5686 19.6805 19.816 20.064C18.9603 20.5 17.8402 20.5 15.6 20.5Z"
                 stroke="white"
-                stroke-opacity="0.84"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
-            Payments & Transactions
+            Payments
+          </Link>
+
+          <Link to="#" className={getLinkClasses(["#"])}>
+            <svg
+              width="24"
+              className="mr-2"
+              height="25"
+              viewBox="0 0 24 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.1583 18.2236C7.91207 18.1641 6.66728 18.0653 5.4258 17.9274C4.42142 17.8158 3.77544 16.8065 4.09502 15.8478C4.25705 15.3617 4.42021 14.8836 4.46312 14.3687L4.81812 10.1087C5.12941 6.37324 8.25204 3.5 12.0004 3.5C15.7488 3.5 18.8714 6.37324 19.1827 10.1087L19.5379 14.3711C19.5808 14.8856 19.7438 15.3637 19.9052 15.8497C20.2233 16.8078 19.5777 17.8156 18.5743 17.9271C17.333 18.0651 16.0885 18.1639 14.8425 18.2235M9.1583 18.2236C11.0519 18.3141 12.9489 18.3141 14.8425 18.2235M9.1583 18.2236L9.15833 18.6579C9.15833 20.2276 10.4308 21.5 12.0004 21.5C13.5701 21.5 14.8425 20.2276 14.8425 18.6579L14.8425 18.2235"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            Notifications
           </Link>
 
           {/* <Link
