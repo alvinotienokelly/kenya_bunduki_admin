@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
-import logo from "../assets/noble_capital_logo.svg";
+import logo from "../assets/logo.svg";
 import Cookies from "js-cookie";
 
 const SideMenu = () => {
@@ -31,7 +31,7 @@ const SideMenu = () => {
   return (
     <div className="hidden md:flex flex-col bg-black text-primary dark:bg-gray-900 dark:text-gray-300 w-64 h-screen justify-between p-4">
       <div className="flex flex-col">
-        {/* <img src={logo} className="h-[80px] mb-6" alt="Noble Capital Logo" /> */}
+        <img src={logo} className="h-[80px] mb-6" alt="Noble Capital Logo" />
         <div className="space-y-4 font-medium w-full">
           <Link
             to="/dashboard/admin"
