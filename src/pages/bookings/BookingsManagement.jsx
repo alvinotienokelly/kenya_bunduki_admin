@@ -10,14 +10,23 @@ import {
   fetchGunTypes,
   fetchShootingLines,
 } from "../../services/api_service";
-import { FaCheck, FaTimes, FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
+import {
+  FaCheck,
+  FaTimes,
+  FaEdit,
+  FaTrashAlt,
+  FaPlus,
+  FaEye,
+} from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const BookingsManagement = () => {
   const [bookings, setBookings] = useState([]);
   const [lines, setLines] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedBooking, setSelectedBooking] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(""); // "add" or "view"
   const [gunTypes, setGunTypes] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
@@ -44,7 +53,11 @@ const BookingsManagement = () => {
         setLoading(false);
       }
     };
-
+    const handleViewBooking = (booking) => {
+      setSelectedBooking(booking); // Set the selected booking to display in the modal
+      setModalType("view"); // Set the modal type to "view"
+      setShowModal(true); // Show the modal
+    };
     const getShootingLines = async () => {
       try {
         const response = await fetchShootingLines();
@@ -162,12 +175,27 @@ const BookingsManagement = () => {
       toast.error("Failed to cancel booking");
     }
   };
+  const handleAddClick = () => {
+    setFormData({
+      name: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      numberOfPeople: "",
+      bookingDate: "",
+      startTime: "",
+      endTime: "",
+      gunType: "",
+      lane: "",
+    });
+    setModalType("add");
+  };
 
   return (
     <Layout title="Bookings Management">
       <div className="flex justify-end mb-4">
         <button
-          onClick={() => setShowModal(true)}
+          onClick={handleAddClick}
           className="bg-primary text-white font-medium text-[14px] flex items-center justify-center gap-2 px-6 py-0.5 md:py-1.5 rounded-md"
         >
           <FaPlus /> Add Booking
@@ -177,7 +205,6 @@ const BookingsManagement = () => {
         <table className="w-full border border-gray-200 dark:border-gray-600 rounded-lg">
           <thead>
             <tr>
-             
               <th className="py-2 px-4 border-b dark:border-gray-700">Name</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Email & Phone
@@ -191,9 +218,7 @@ const BookingsManagement = () => {
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Start Time
               </th>
-              <th className="py-2 px-4 border-b dark:border-gray-700">
-               Line
-              </th>
+              <th className="py-2 px-4 border-b dark:border-gray-700">Line</th>
               <th className="py-2 px-4 border-b dark:border-gray-700">
                 Gun Type
               </th>
@@ -230,7 +255,9 @@ const BookingsManagement = () => {
                   <td className="py-2 px-4">
                     {booking.startTime} - {booking.endTime}
                   </td>
-                  <td className="py-2 px-4">{booking.ShootingLine?.name ?? ""}</td>
+                  <td className="py-2 px-4">
+                    {booking.ShootingLine?.name ?? ""}
+                  </td>
                   <td className="py-2 px-4">{booking.gunTypeName}</td>
                   <td className="py-2 px-4">{booking.status}</td>
                   <td className="py-2 px-4 flex gap-2">
@@ -249,6 +276,12 @@ const BookingsManagement = () => {
                           <FaTimes />
                         </button>
                         <button
+                          onClick={() => handleViewBooking(booking)}
+                          className="text-blue-500 hover:text-blue-700"
+                        >
+                          <FaEye />
+                        </button>
+                        <button
                           onClick={() =>
                             handleModify(booking.booking_id, {
                               /* new details */
@@ -258,6 +291,7 @@ const BookingsManagement = () => {
                         >
                           <FaEdit />
                         </button>
+
                         <button
                           onClick={() => handleCancel(booking.booking_id)}
                           className="text-gray-500 hover:text-gray-700"
@@ -279,8 +313,58 @@ const BookingsManagement = () => {
           </tbody>
         </table>
       </div>
-
-      {showModal && (
+      {modalType === "view" && selectedBooking && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
+            <h2 className="text-lg font-semibold mb-4">Booking Details</h2>
+            <div className="space-y-4">
+              <p>
+                <strong>Name:</strong> {selectedBooking.name}
+              </p>
+              <p>
+                <strong>Email:</strong> {selectedBooking.email}
+              </p>
+              <p>
+                <strong>Phone:</strong> {selectedBooking.phone}
+              </p>
+              <p>
+                <strong>Number of People:</strong>{" "}
+                {selectedBooking.numberOfPeople}
+              </p>
+              <p>
+                <strong>Booking Date:</strong>{" "}
+                {new Date(selectedBooking.bookingDate).toLocaleDateString()}
+              </p>
+              <p>
+                <strong>Start Time:</strong> {selectedBooking.startTime}
+              </p>
+              <p>
+                <strong>End Time:</strong> {selectedBooking.endTime}
+              </p>
+              <p>
+                <strong>Lane:</strong>{" "}
+                {selectedBooking.ShootingLine?.name ?? "N/A"}
+              </p>
+              <p>
+                <strong>Gun Type:</strong>{" "}
+                {selectedBooking.gunTypeName ?? "N/A"}
+              </p>
+              <p>
+                <strong>Status:</strong> {selectedBooking.status}
+              </p>
+            </div>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-300 text-gray-700 px-4 py-1.5 rounded-md"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {modalType === "add" && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
             <h2 className="text-lg font-semibold mb-4">Add Booking</h2>
@@ -447,7 +531,7 @@ const BookingsManagement = () => {
               <div className="flex justify-end mt-4">
                 <button
                   type="button"
-                  onClick={() => setShowModal(false)}
+                  onClick={() => setModalType("")}
                   className="bg-gray-300 text-gray-700 px-4 py-1.5 rounded-md mr-2"
                 >
                   Cancel
